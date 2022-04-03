@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans ">
+    <!-- 밑의 있는 형태는 AppConfig와 형태가 완전히 일치한다 -->
+    <bean id="memberService" class="hello.demo.member.MemberServiceImpl">
+        <!--  -->
+        <constructor-arg name="memberRepository" ref="memberRepository "/>
+    </bean>
+    <!-- -->
+    <bean id="memberRepository" class="hello.demo.member.MemoryMemberRepository"/>
+
+
+    <bean id="orderService" class="hello.demo.order.OrderServiceImpl">
+        <!--변수를 가져운다 "memberRepository"를 참조를한다 "memberReopository" -->
+        <constructor-arg name="memberRepository" ref="memberRepository"/>
+        <constructor-arg name="discountPolicy" ref="discountPolicy"/>
+    </bean>
+
+    <bean id="discountPolicy" class="hello.demo.discount.RateDiscountPolicy"/>
+
+</beans>
+<!-- 요거와 완전히 일치하다
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public MemberService memberService(){
+        return new MemberServiceImpl(memberRopository());
+    }
+
+    @Bean
+    public MemberRepository memberRopository() {
+        return new MemoryMemberRepository();
+    }
+
+    @Bean
+    public OrderService orderService(){
+        return new OrderServiceImpl(
+                memberRopository(), discountPolicy());
+    }
+    @Bean
+    public DiscountPolicy discountPolicy(){
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
+    }
+}
+-->
