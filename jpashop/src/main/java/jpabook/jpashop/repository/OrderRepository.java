@@ -99,4 +99,38 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery() {
+        //이렇게하면 Lazy 무시하고 객체를 모두 가져와서 한다
+        //N + 1 문제는 일어나지 않는다
+        List<Order> resultList = em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class
+        ).getResultList();
+        return resultList;
+    }
+
+
+    public List<Order> findAllWithItem() {
+
+        List<Order> resultList = em.createQuery("" +
+                        "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+        return resultList;
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        List<Order> resultList = em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+        return resultList;
+    }
 }
