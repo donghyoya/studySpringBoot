@@ -33,7 +33,8 @@ public abstract class Item {
 
     private int stockQuantity;
 
-    @JsonIgnore
+
+
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 

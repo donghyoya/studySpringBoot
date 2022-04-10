@@ -6,6 +6,8 @@ import jpabook.jpashop.domian.OrderItem;
 import jpabook.jpashop.domian.OrderSearch;
 import jpabook.jpashop.domian.Status.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.query.OrderFlatDto;
+import jpabook.jpashop.repository.query.OrderItemQueryDto;
 import jpabook.jpashop.repository.query.OrderQueryDto;
 import jpabook.jpashop.repository.query.OrderQueryRepository;
 import lombok.Data;
@@ -20,6 +22,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequiredArgsConstructor
@@ -94,6 +99,15 @@ public class OrderApiController {
         return orderQueryDtos;
     }
 
+    @RequestMapping(value = "/api/v6/orders", method = RequestMethod.GET)
+    public List<OrderFlatDto> ordersV6(){
+        List<OrderFlatDto> flats = orderQueryRepository.findAllByDto_flat();
+
+        //사용자가 직접 거르는 Loop를 해야한다
+
+        return flats;
+    }
+
     @Getter
     static class OrderDto{
 
@@ -112,7 +126,7 @@ public class OrderApiController {
             address = order.getDelivery().getAddress();
             orderItems = order.getOrderItems().stream()
                     .map(orderItem -> new OrderItemDto(orderItem))
-                    .collect(Collectors.toList());
+                    .collect(toList());
         }
     }
 
