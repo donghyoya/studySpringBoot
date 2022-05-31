@@ -1,5 +1,6 @@
 package jpabook.jpashop.controller;
 
+import jpabook.jpashop.domian.Status.MemberStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,4 +16,5 @@ public class MemberForm {
     private String city;
     private String street;
     private String zipcode;
+    private MemberStatus status;
 }

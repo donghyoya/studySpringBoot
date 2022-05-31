@@ -1,5 +1,6 @@
 package jpabook.jpashop.domian;
 
+import jpabook.jpashop.domian.Status.MemberStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,9 @@ public class Member {
 
     @NotEmpty
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private MemberStatus status;
 
     @Embedded
     private Address address;

@@ -7,10 +7,8 @@ import jpabook.jpashop.domian.OrderSearch;
 import jpabook.jpashop.domian.Status.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.query.OrderFlatDto;
-import jpabook.jpashop.repository.query.OrderItemQueryDto;
 import jpabook.jpashop.repository.query.OrderQueryDto;
 import jpabook.jpashop.repository.query.OrderQueryRepository;
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 @RestController

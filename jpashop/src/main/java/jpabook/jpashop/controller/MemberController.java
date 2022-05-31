@@ -36,9 +36,10 @@ public class MemberController {
         Member member = new Member();
         member.setName(form.getName());
         member.setAddress(address);
+        member.setStatus(form.getStatus());
 
         memberService.createAccount(member);
-        return "redirect:/";
+        return "home";
     }
     
     @RequestMapping(value = "/members", method = RequestMethod.GET)

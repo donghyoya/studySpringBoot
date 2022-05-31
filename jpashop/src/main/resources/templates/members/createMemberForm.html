@@ -34,6 +34,13 @@
             <input type="text" th:field="*{zipcode}" class="form-control"
                    placeholder="우편번호를 입력하세요">
         </div>
+        <div class="form-group">
+            <label th:for="status">구매자/판매자</label>
+            <select name="status" id="status" th:value="${status}">
+                <option th:selected="${status}=='Buyer'">구매자</option>
+                <option th:selected="${status}=='Seller'">판매자</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <br/>
