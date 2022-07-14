@@ -1,5 +1,6 @@
 package jpabook.jpashop.domian;
 
+import jpabook.jpashop.domian.Status.MemberType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,9 @@ public class Member {
     private Long id;
 
     private String name;
+
+    @Column(name = "member_type")
+    private MemberType membertype;
 
     @Embedded
     private Address address;
