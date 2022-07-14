@@ -58,9 +58,11 @@ public class MemberService {
         return memberRepository.findOne(userid);
     }
 
+    @Transactional
     public void update(Long id, String name) {
+        //영속성 상태이기에 update문을 작성안해도 작동이 가능하다
+        //이때 member을 반환하면 영속성이 끊긴 상태에서 반환이된다
         Member member = memberRepository.findOne(id);
         member.setName(name);
     }
-
 }

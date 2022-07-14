@@ -1,5 +1,6 @@
 package jpabook.jpashop.domian;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.domian.Status.DeliveryStatus;
 import jpabook.jpashop.domian.Status.OrderStatus;
 import lombok.AccessLevel;
@@ -22,15 +23,18 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY) //1:n에서 n부분이 orders 이기에 FK
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     //이쪽을 FK로 잡았다(1:1 매핑이기에 둘중 하나는 FK로 잡아야하는데 여기에다가 잡은것이다)
     //둘중 하나만 선택하면된다
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //1:1 매핑
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
