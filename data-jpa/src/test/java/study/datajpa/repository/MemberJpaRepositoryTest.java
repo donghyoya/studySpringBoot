@@ -1,6 +1,5 @@
 package study.datajpa.repository;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -21,6 +19,12 @@ class MemberJpaRepositoryTest {
 
     @Autowired
     MemberJpaRepository memberJpaRepository;
+
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
+    TeamJpaRepository teamJpaRepository;
 
     @Autowired
     TeamRepository teamRepository;
@@ -45,8 +49,10 @@ class MemberJpaRepositoryTest {
         Optional<Team> team_sub = teamRepository.findById(1L);
         Team teamA = team_sub.get();
 
-        Member member1 = memberJpaRepository.find(3L);
-        Member member2 = memberJpaRepository.find(4L);
+        Optional<Member> byId1 = memberRepository.findById(3L);
+        Member member1 = byId1.get();
+        Optional<Member> byId2 = memberRepository.findById(4L);
+        Member member2 = byId2.get();
         Member member3 = memberJpaRepository.find(5L);
 
         Member Submember = new Member("SubMember",10,teamA);
