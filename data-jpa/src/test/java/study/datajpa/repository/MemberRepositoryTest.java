@@ -64,7 +64,7 @@ class MemberRepositoryTest {
         member1.setTeam(team);
         memberRepository.save(member1);
 
-        List<MemberDto> memaberDto = memberRepository.findMemaberDto();
+        List<MemberDto> memaberDto = memberRepository.findMemberDto();
         for(MemberDto dto : memaberDto){
             System.out.println("dto = " + dto);
         }
@@ -85,7 +85,33 @@ class MemberRepositoryTest {
         for(Member member : byNames){
             System.out.println("name = " + member);
         }
-
-
     }
+
+    @Test
+    @Rollback(value = true)
+    public void returnType(){
+
+        Member member1 = new Member("AAA", 10);
+        Member member2 = new Member("BBB", 20);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        List<Member> find1 = memberRepository.findListByUsername("AAA");
+        //자바에서 리스트는 빈값도 제공하기에 null이 존재하지 않는다
+        Member find2 = memberRepository.findMemberByUsername("AAA");
+        //원래라면 exception 터져야하는데 스프링부트에서 trycatch에서 NoResultException 잡아준다
+        Optional<Member> find3 = memberRepository.findObtionalByUsername("AAA");
+        //자바8이상부터 Optional이용해서 처리하는게 더 용이하다 그냥해도 괜찮지만 Optional에용하자
+        //근데 중복데이터가 2개이상이면 바로 NonUniqeResultException 터진다
+        //(스프링에선 이 에러를 IncorrectResultSizeDataAccessException으로 변환해준다)
+        //
+
+        for(Member find : find1){
+            System.out.println("find1 = " + find);
+        }
+        System.out.println("find2 = " + find2);
+        System.out.println("find3 = " + find3.get());
+    }
+
 }
