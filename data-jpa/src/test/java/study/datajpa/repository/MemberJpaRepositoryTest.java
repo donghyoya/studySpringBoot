@@ -80,4 +80,64 @@ class MemberJpaRepositoryTest {
         System.out.println("count2 = " + count2);
     }
 
+    @Test
+    @Rollback(value = true)
+    public void findByUsernameAndAgeGreaterThen(){
+        Member member1 = new Member("asb", 10);
+        Member member2 = new Member("asb", 20);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        List<Member> result = memberRepository.findByUsernameAndAgeGreaterThan("asb", 15);
+
+        assertThat(result.get(0).getUsername()).isEqualTo("asb");
+        assertThat(result.get(0).getAge()).isEqualTo(20);
+    }
+
+    @Test
+    @Rollback(value = true)
+    public void testNamedQuery(){
+        Member member1 = new Member("AAA", 10);
+        Member member2 = new Member("BBB", 20);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        List<Member> result = memberJpaRepository.namedQueryfindByUsername("AAA");
+
+        Member findMember = result.get(0);
+
+        assertThat(findMember).isEqualTo(member1);
+    }
+
+    @Test
+    public void testNamedQuery2(){
+        Member member1 = new Member("AAA", 10);
+        Member member2 = new Member("BBB", 20);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        List<Member> result = memberRepository.findByUsername("AAA");
+
+        Member findMember = result.get(0);
+
+        assertThat(findMember).isEqualTo(member1);
+    }
+
+    @Test
+    public void findUsernameList(){
+        Member member1 = new Member("AAA", 10);
+        Member member2 = new Member("BBB", 20);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        List<String> usernameList = memberRepository.findUsernameList();
+
+        for(String s : usernameList){
+            System.out.println("username = " + s);
+        }
+    }
 }
