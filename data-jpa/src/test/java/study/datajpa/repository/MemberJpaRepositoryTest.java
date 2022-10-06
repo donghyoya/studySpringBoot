@@ -32,7 +32,7 @@ class MemberJpaRepositoryTest {
     @Test
     @Rollback(value = false)
     public void testMember(){
-        Member member = new Member("member123",20);
+        Member member = new Member("member1",20);
 
         Member save = memberJpaRepository.save(member);
 
@@ -139,5 +139,30 @@ class MemberJpaRepositoryTest {
         for(String s : usernameList){
             System.out.println("username = " + s);
         }
+    }
+
+    @Test
+    public void paging(){
+        memberJpaRepository.save(new Member("memberTest1",20));
+        memberJpaRepository.save(new Member("memberTest2",20));
+        memberJpaRepository.save(new Member("memberTest3",20));
+        memberJpaRepository.save(new Member("memberTest4",20));
+        memberJpaRepository.save(new Member("memberTest5",20));
+        memberJpaRepository.save(new Member("memberTest6",20));
+        memberJpaRepository.save(new Member("memberTest7",20));
+        memberJpaRepository.save(new Member("memberTest8",20));
+
+        int age = 20;
+        int offset = 0;
+        int limit = 4;
+
+        List<Member> members = memberJpaRepository.findByPage(age, offset, limit);
+        long totalCount = memberJpaRepository.totalCount(age, offset, limit);
+        for(Member data : members){
+            System.out.println("member = " + data);
+        }
+        System.out.println("totalCount = " + totalCount);
+
+
     }
 }

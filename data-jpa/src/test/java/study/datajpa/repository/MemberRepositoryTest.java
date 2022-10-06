@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.dto.MemberDto;
@@ -114,4 +117,31 @@ class MemberRepositoryTest {
         System.out.println("find3 = " + find3.get());
     }
 
+    @Test
+    public void paging(){
+        //given
+        memberRepository.save(new Member("testMember1",1));
+        memberRepository.save(new Member("testMember2",2));
+        memberRepository.save(new Member("testMember3",3));
+        memberRepository.save(new Member("testMember4",4));
+        memberRepository.save(new Member("testMember5",5));
+
+        int age = 1;
+        int offset = 0;
+        int limit = 3;
+
+        //when
+//        PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
+//        Page<Member> page = memberRepository.findbyAge(age, pageRequest);
+
+        //then
+
+//        List<Member> content = page.getContent();
+//        long totalElements = page.getTotalElements();
+//
+//        for(Member data : content){
+//            System.out.println("data = " + data);
+//        }
+//        System.out.println("totalElements = " + totalElements);
+    }
 }
