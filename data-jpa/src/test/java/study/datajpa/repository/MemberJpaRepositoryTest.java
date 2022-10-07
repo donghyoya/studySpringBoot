@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +30,9 @@ class MemberJpaRepositoryTest {
 
     @Autowired
     TeamRepository teamRepository;
+
+    @PersistenceContext
+    EntityManager em;
 
     @Test
     @Rollback(value = false)
@@ -162,7 +167,33 @@ class MemberJpaRepositoryTest {
             System.out.println("member = " + data);
         }
         System.out.println("totalCount = " + totalCount);
+    }
 
+    @Test
+    @Rollback(value = true)
+    public void bulkUpdate(){
+        memberJpaRepository.save(new Member("memberTest1",10));
+        memberJpaRepository.save(new Member("memberTest2",19));
+        memberJpaRepository.save(new Member("memberTest3",21));
+        memberJpaRepository.save(new Member("memberTest4",40));
+        memberJpaRepository.save(new Member("memberTest5",45));
+        memberJpaRepository.save(new Member("memberTest6",60));
+        memberJpaRepository.save(new Member("memberTest7",71));
+        memberJpaRepository.save(new Member("memberTest8",98));
 
+        int reusltCount = memberJpaRepository.bulkAgePluse(20);
+
+        em.flush();//영속성에 남아있는 내용을 DB에 바로 적용
+        em.clear();//영속성에 남아있는 내용을 지움
+
+        System.out.println("reusltCount = " + reusltCount);
+
+        Member memberTest7 = memberJpaRepository.findbyName("memberTest7").get();
+        System.out.println("memberTest7 = " + memberTest7);// flush, clear 안하면 영속성에는 71로 남아있는 모습을 볼수있다
+//        List<Member> getMember = memberJpaRepository.findAll();
+//
+//        for(Member member: getMember){
+//            System.out.println("member = " + member);
+//        }
     }
 }

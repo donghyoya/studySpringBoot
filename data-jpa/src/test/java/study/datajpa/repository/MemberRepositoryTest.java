@@ -144,4 +144,22 @@ class MemberRepositoryTest {
 //        }
 //        System.out.println("totalElements = " + totalElements);
     }
+
+    @Test
+    @Rollback(value = true)
+    public void bulkAgeTest(){
+
+        memberRepository.save(new Member("memberTest1",10));
+        memberRepository.save(new Member("memberTest2",19));
+        memberRepository.save(new Member("memberTest3",21));
+        memberRepository.save(new Member("memberTest4",40));
+        memberRepository.save(new Member("memberTest5",45));
+        memberRepository.save(new Member("memberTest6",60));
+        memberRepository.save(new Member("memberTest7",71));
+        memberRepository.save(new Member("memberTest8",98));
+
+        int age = 20;
+        int resultage = memberRepository.bulkAgePlus(age);
+        System.out.println("resultage = " + resultage);
+    }
 }
