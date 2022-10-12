@@ -2,6 +2,7 @@ package study.datajpa.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -40,10 +41,23 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findObtionalByUsername(String username);//단건에 Optional감쌓는다
 
-//    Page<Member> findbyAge(int age, Pageable pageable);
+    Page<Member> findByAge(int age, Pageable pageable);
 
     @Modifying(clearAutomatically = true) //excuteUpdate()와 같은 기능을 한다
     //clearAutomatically 은 자동적으로 영속성의 데이터를 지워버린다
     @Query("update Member m set m.age = m.age + 1 where m.age >= :age")
     int bulkAgePlus(@Param("age")int age);
+
+    @Query("select m from Member m left join fetch m.team")
+    List<Member> findMemberFetchJoin();
+
+    @Override
+    @EntityGraph(attributePaths = {"team"}) //fetch join이라고 생각하면 편하다
+    List<Member> findAll();
+
+    @EntityGraph(attributePaths = {"team"})
+    List<Member> findEntityGraphByUsername(@Param("username") String username);
+
+//    @EntityGraph("Member.all")
+//    List<Member> findEntityGrapByUsername2(@Param("username") String username);
 }

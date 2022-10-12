@@ -13,6 +13,8 @@ import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +30,9 @@ class MemberRepositoryTest {
     MemberRepository memberRepository;
     @Autowired
     TeamRepository teamRepository;
+
+    @PersistenceContext
+    EntityManager em;
 
     @Test
     @Rollback(value = true)
@@ -161,5 +166,45 @@ class MemberRepositoryTest {
         int age = 20;
         int resultage = memberRepository.bulkAgePlus(age);
         System.out.println("resultage = " + resultage);
+    }
+
+    @Test
+    public void findMemberLazy(){
+        //given
+        /*
+        member1 -> TeamA
+        member2 -> TeamB
+         */
+
+        Team teamA = teamRepository.findById(1L).get();
+        Team teamB = teamRepository.findById(2L).get();
+
+        Member member1 = new Member("testMember1", 10, teamA);
+        Member member3 = new Member("testMember1", 10, teamA);
+        Member member2 = new Member("testMember2", 20, teamB);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+        memberRepository.save(member3);
+
+        em.flush();
+        em.clear();
+
+        //when
+        List<Member> members = memberRepository.findAll();
+        List<Member> memberParam = memberRepository.findEntityGraphByUsername("testMember1");
+//        List<Member> memberParam2 = memberRepository.findEntityGrapByUsername2("testMember1");
+
+        for(Member member : members){
+            System.out.println("member = " + member.getUsername());
+            System.out.println("member.getTeam Name = " + member.getTeam().getName());
+        }
+
+        for(Member member : memberParam){
+            System.out.println("member = " + member);
+        }
+
+//        for(Member member : memberParam2){
+//            System.out.println("member = " + member);
+//        }
     }
 }
