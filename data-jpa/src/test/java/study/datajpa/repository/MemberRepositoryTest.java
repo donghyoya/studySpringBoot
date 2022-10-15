@@ -207,4 +207,37 @@ class MemberRepositoryTest {
 //            System.out.println("member = " + member);
 //        }
     }
+
+    @Test
+    public void queryHint(){
+        Member member = new Member("memberTest1", 10);
+        memberRepository.save(member);
+        em.flush();
+        em.clear();
+
+        //when
+        //이때 원본 데이터와, 변경후 데이터 2개를 관리하고 있으므로 비효율이다
+//        Member findMember = memberRepository.findById(member.getId()).get();
+
+        //아래처럼 QueryHint를 사용하면 따로 관리를 하지 않는다 = 즉 데이터 변경이 불가능하다
+        Member findMember = memberRepository.findReadOnlyByUsername(member.getUsername());
+        findMember.setUsername("memberTest2");
+
+        em.flush();//변경 감지한다
+    }
+    @Test
+    public void lock(){
+        Member member = new Member("memberTest1", 10);
+        memberRepository.save(member);
+        em.flush();
+        em.clear();
+
+        //실시간 트래픽일경우 락을 보지 않아야한다
+        //패스매스틱 락 걸어버리면 해당 관련된 것들이 모두 락이 된다
+        List<Member> lockByUsername = memberRepository.findLockByUsername(member.getUsername());
+
+        for(Member m : lockByUsername){
+            System.out.println("member = " + m);
+        }
+    }
 }
