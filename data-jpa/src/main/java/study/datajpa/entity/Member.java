@@ -14,7 +14,7 @@ import javax.persistence.*;
         query = "select m from Member m where m.username = :username" //해당 쿼리
 )
 //@NamedEntityGraph(name = "Member.all",attributeNodes = @NamedAttributeNode("team"))
-public class Member {
+public class Member extends JpaBaseEntity{
 
     @Id
     @GeneratedValue
@@ -46,4 +46,6 @@ public class Member {
         this.team = team;
         team.getMembers().add(this);
     }
+
+
 }
