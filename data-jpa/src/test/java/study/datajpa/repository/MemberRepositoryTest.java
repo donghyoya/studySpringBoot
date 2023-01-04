@@ -4,9 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.dto.MemberDto;
@@ -249,5 +247,31 @@ class MemberRepositoryTest {
         }
     }
 
+    @Test
+    public void queryByExample(){
+        //example query는 이미 jparepository에 정의 되어있기에 따로 생성자?만들필요 없다
+        //단점 inner join만 가능하고 outter 조인 안됀다, 매칭조건이 간단함 = 중첩제약 조건은 할수 없다
+        Team teamA = new Team("teamA");
+        em.persist(teamA);
 
+        Member m1 = new Member("m1",0,teamA);
+        Member m2 = new Member("m2",10,teamA);
+
+        em.persist(m1);
+        em.persist(m2);
+
+        em.flush();
+        em.clear();
+
+        //when
+        Member member = new Member("m1");
+        member.setTeam(teamA);
+
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("age"); //age 속성은 무시한채로 검색해줘
+        Example<Member> example = Example.of(member,matcher);//연관관계까지 다해준다
+
+        List<Member> result = memberRepository.findAll(example); //jpa에서 example을 해뒀다
+
+        assertThat(result.get(0).getUsername()).isEqualTo("m1");
+    }
 }

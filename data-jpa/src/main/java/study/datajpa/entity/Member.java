@@ -39,6 +39,10 @@ public class Member extends JpaBaseEntity{
         this.age =age;
     }
 
+    public Member(String m1) {
+        this.username = m1;
+    }
+
 //    protected Member(){
 //    }
 
