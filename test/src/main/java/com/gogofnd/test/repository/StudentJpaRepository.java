@@ -35,5 +35,7 @@ public class StudentJpaRepository {
         return Optional.ofNullable(findStudent);
     }
 
+    public void update(String StudentId, int age){
 
+    }
 }
