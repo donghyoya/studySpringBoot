@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cbccc75d-3a04-49da-b61c-729fc62d12c8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/increpas/mvc/HomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/increpas/mvc/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/SpringmvcApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/HelloData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/LogTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/request/RequestBodyJsonController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/request/RequestBodyStringController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/request/RequestHeaderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/request/RequestParamController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/requestmapping/MappingClassController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/requestmapping/MappingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/response/ResponseBodyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello/springmvc/basic/response/ResponseViewController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/basic/hello-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/response/hello.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test/test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/hello/springmvc/SpringmvcApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/log4j.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/increpas/mvc/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/increpas/mvc/TestController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/SpringmvcApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/HelloData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/LogTestController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/request/RequestBodyJsonController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/request/RequestBodyStringController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/request/RequestHeaderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/request/RequestParamController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/requestmapping/MappingClassController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/requestmapping/MappingController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/response/ResponseBodyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hello/springmvc/basic/response/ResponseViewController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.increpas/mvc/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.increpas/mvc/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/hello/springmvc/SpringmvcApplicationTests.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2RoTZgqn30CXkxZMbe1xFkYyRK4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/kangy/Documents/Java/SpringMVC/springmvc"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cbccc75d-3a04-49da-b61c-729fc62d12c8" name="Changes" comment="" />
+      <created>1687915494526</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687915494526</updated>
+    </task>
+    <servers />
+  </component>
+</project>
