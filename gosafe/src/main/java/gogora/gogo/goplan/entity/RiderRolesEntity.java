@@ -9,11 +9,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "rider_roles", schema = "goPlan_KB", catalog = "")
 public class RiderRolesEntity {
-    private long driverId;
-    private String roles;
 
     @Basic
     @Column(name = "driver_id", nullable = false)
+    private long driverId;
+
+    @Basic
+    @Column(name = "roles", nullable = true, length = 255)
+    private String roles;
+
+
     public long getDriverId() {
         return driverId;
     }
@@ -22,8 +27,7 @@ public class RiderRolesEntity {
         this.driverId = driverId;
     }
 
-    @Basic
-    @Column(name = "roles", nullable = true, length = 255)
+
     public String getRoles() {
         return roles;
     }

@@ -6,13 +6,21 @@ import java.util.Objects;
 @Entity
 @Table(name = "reject_message", schema = "goPlan_KB", catalog = "")
 public class RejectMessageEntity {
-    private long id;
-    private String rejectMessage;
-    private String rejectReason;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "reject_message", nullable = true, length = 255)
+    private String rejectMessage;
+
+    @Basic
+    @Column(name = "reject_reason", nullable = true, length = 255)
+    private String rejectReason;
+
+
     public long getId() {
         return id;
     }
@@ -21,8 +29,7 @@ public class RejectMessageEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "reject_message", nullable = true, length = 255)
+
     public String getRejectMessage() {
         return rejectMessage;
     }
@@ -31,8 +38,7 @@ public class RejectMessageEntity {
         this.rejectMessage = rejectMessage;
     }
 
-    @Basic
-    @Column(name = "reject_reason", nullable = true, length = 255)
+
     public String getRejectReason() {
         return rejectReason;
     }

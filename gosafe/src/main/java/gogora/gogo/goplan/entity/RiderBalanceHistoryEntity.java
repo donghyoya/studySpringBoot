@@ -7,16 +7,33 @@ import java.util.Objects;
 @Entity
 @Table(name = "rider_balance_history", schema = "goPlan_KB", catalog = "")
 public class RiderBalanceHistoryEntity {
-    private long id;
-    private int balance;
-    private String balanceStatus;
-    private Timestamp createdDate;
-    private Long callId;
-    private Long riderId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "balance", nullable = false)
+    private int balance;
+
+    @Basic
+    @Column(name = "balanceStatus", nullable = true, length = 255)
+    private String balanceStatus;
+
+    @Basic
+    @Column(name = "createdDate", nullable = true)
+    private Timestamp createdDate;
+
+    @Basic
+    @Column(name = "call_id", nullable = true)
+    private Long callId;
+
+    @Basic
+    @Column(name = "rider_id", nullable = true)
+    private Long riderId;
+
+
     public long getId() {
         return id;
     }
@@ -25,8 +42,7 @@ public class RiderBalanceHistoryEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "balance", nullable = false)
+
     public int getBalance() {
         return balance;
     }
@@ -35,8 +51,7 @@ public class RiderBalanceHistoryEntity {
         this.balance = balance;
     }
 
-    @Basic
-    @Column(name = "balanceStatus", nullable = true, length = 255)
+
     public String getBalanceStatus() {
         return balanceStatus;
     }
@@ -45,8 +60,7 @@ public class RiderBalanceHistoryEntity {
         this.balanceStatus = balanceStatus;
     }
 
-    @Basic
-    @Column(name = "createdDate", nullable = true)
+
     public Timestamp getCreatedDate() {
         return createdDate;
     }
@@ -55,8 +69,7 @@ public class RiderBalanceHistoryEntity {
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "call_id", nullable = true)
+
     public Long getCallId() {
         return callId;
     }
@@ -65,8 +78,7 @@ public class RiderBalanceHistoryEntity {
         this.callId = callId;
     }
 
-    @Basic
-    @Column(name = "rider_id", nullable = true)
+
     public Long getRiderId() {
         return riderId;
     }

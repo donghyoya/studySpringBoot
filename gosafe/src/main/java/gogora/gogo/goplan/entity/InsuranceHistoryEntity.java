@@ -16,15 +16,45 @@ public class InsuranceHistoryEntity {
     @Basic
     @Column(name = "applicationNumber", nullable = true, length = 20)
     private String applicationNumber;
+
+    @Basic
+    @Column(name = "createdDate", nullable = true)
     private Timestamp createdDate;
+
+    @Basic
+    @Column(name = "policy_number", nullable = true, length = 20)
     private String policyNumber;
+
+    @Basic
+    @Column(name = "status", nullable = true, length = 20)
     private String status;
+
+    @Basic
+    @Column(name = "rider_id", nullable = true)
     private Long riderId;
+
+    @Basic
+    @Column(name = "effectiveEndDate", nullable = true)
     private Timestamp effectiveEndDate;
+
+    @Basic
+    @Column(name = "effectiveStartDate", nullable = true)
     private Timestamp effectiveStartDate;
+
+    @Basic
+    @Column(name = "until", nullable = true)
     private Timestamp until;
+
+    @Basic
+    @Column(name = "age21Yn", nullable = true, length = 255)
     private String age21Yn;
+
+    @Basic
+    @Column(name = "seller_id", nullable = true)
     private Long sellerId;
+
+    @Basic
+    @Column(name = "ageYn", nullable = true, length = 255)
     private String ageYn;
 
 
@@ -45,8 +75,7 @@ public class InsuranceHistoryEntity {
         this.applicationNumber = applicationNumber;
     }
 
-    @Basic
-    @Column(name = "createdDate", nullable = true)
+
     public Timestamp getCreatedDate() {
         return createdDate;
     }
@@ -55,8 +84,7 @@ public class InsuranceHistoryEntity {
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "policy_number", nullable = true, length = 20)
+
     public String getPolicyNumber() {
         return policyNumber;
     }
@@ -65,8 +93,7 @@ public class InsuranceHistoryEntity {
         this.policyNumber = policyNumber;
     }
 
-    @Basic
-    @Column(name = "status", nullable = true, length = 20)
+
     public String getStatus() {
         return status;
     }
@@ -75,8 +102,7 @@ public class InsuranceHistoryEntity {
         this.status = status;
     }
 
-    @Basic
-    @Column(name = "rider_id", nullable = true)
+
     public Long getRiderId() {
         return riderId;
     }
@@ -85,8 +111,7 @@ public class InsuranceHistoryEntity {
         this.riderId = riderId;
     }
 
-    @Basic
-    @Column(name = "effectiveEndDate", nullable = true)
+
     public Timestamp getEffectiveEndDate() {
         return effectiveEndDate;
     }
@@ -95,8 +120,7 @@ public class InsuranceHistoryEntity {
         this.effectiveEndDate = effectiveEndDate;
     }
 
-    @Basic
-    @Column(name = "effectiveStartDate", nullable = true)
+
     public Timestamp getEffectiveStartDate() {
         return effectiveStartDate;
     }
@@ -105,8 +129,7 @@ public class InsuranceHistoryEntity {
         this.effectiveStartDate = effectiveStartDate;
     }
 
-    @Basic
-    @Column(name = "until", nullable = true)
+
     public Timestamp getUntil() {
         return until;
     }
@@ -115,8 +138,7 @@ public class InsuranceHistoryEntity {
         this.until = until;
     }
 
-    @Basic
-    @Column(name = "age21Yn", nullable = true, length = 255)
+
     public String getAge21Yn() {
         return age21Yn;
     }
@@ -125,8 +147,7 @@ public class InsuranceHistoryEntity {
         this.age21Yn = age21Yn;
     }
 
-    @Basic
-    @Column(name = "seller_id", nullable = true)
+
     public Long getSellerId() {
         return sellerId;
     }
@@ -135,8 +156,7 @@ public class InsuranceHistoryEntity {
         this.sellerId = sellerId;
     }
 
-    @Basic
-    @Column(name = "ageYn", nullable = true, length = 255)
+
     public String getAgeYn() {
         return ageYn;
     }

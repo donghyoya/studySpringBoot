@@ -7,16 +7,33 @@ import java.util.Objects;
 @Entity
 @Table(name = "reject_reason", schema = "goPlan_KB", catalog = "")
 public class RejectReasonEntity {
-    private long id;
-    private String rejectReason;
-    private Timestamp rejectDate;
-    private String status;
-    private Long riderId;
-    private Long joinWebId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "reject_reason", nullable = true, length = 255)
+    private String rejectReason;
+
+    @Basic
+    @Column(name = "reject_date", nullable = true)
+    private Timestamp rejectDate;
+
+    @Basic
+    @Column(name = "status", nullable = true, length = 20)
+    private String status;
+
+    @Basic
+    @Column(name = "rider_id", nullable = true)
+    private Long riderId;
+
+    @Basic
+    @Column(name = "joinWeb_Id", nullable = true)
+    private Long joinWebId;
+
+
     public long getId() {
         return id;
     }
@@ -25,8 +42,7 @@ public class RejectReasonEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "reject_reason", nullable = true, length = 255)
+
     public String getRejectReason() {
         return rejectReason;
     }
@@ -35,8 +51,7 @@ public class RejectReasonEntity {
         this.rejectReason = rejectReason;
     }
 
-    @Basic
-    @Column(name = "reject_date", nullable = true)
+
     public Timestamp getRejectDate() {
         return rejectDate;
     }
@@ -45,8 +60,7 @@ public class RejectReasonEntity {
         this.rejectDate = rejectDate;
     }
 
-    @Basic
-    @Column(name = "status", nullable = true, length = 20)
+
     public String getStatus() {
         return status;
     }
@@ -55,8 +69,7 @@ public class RejectReasonEntity {
         this.status = status;
     }
 
-    @Basic
-    @Column(name = "rider_id", nullable = true)
+
     public Long getRiderId() {
         return riderId;
     }
@@ -65,8 +78,7 @@ public class RejectReasonEntity {
         this.riderId = riderId;
     }
 
-    @Basic
-    @Column(name = "joinWeb_Id", nullable = true)
+
     public Long getJoinWebId() {
         return joinWebId;
     }

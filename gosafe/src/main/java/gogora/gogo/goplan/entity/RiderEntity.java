@@ -7,38 +7,121 @@ import java.util.Objects;
 @Entity
 @Table(name = "rider", schema = "goPlan_KB", catalog = "")
 public class RiderEntity {
-    private long id;
-    private String name;
-    private String phone;
-    private String vcnoHnglNm;
-    private String driverId;
-    private String region;
-    private String loginId;
-    private String insuranceStatus;
-    private String mtdt;
-    private String oprnPurp;
-    private Timestamp effectiveStartDate;
-    private Timestamp effectiveEndDate;
-    private int gender;
-    private String password;
-    private String policyNumber;
-    private String ssn;
-    private Integer status;
-    private Timestamp createdDate;
-    private Timestamp deletedDate;
-    private Timestamp modifiedDate;
-    private Long sellerId;
-    private String imagePath;
-    private String applyStatus;
-    private String totalWebViewUrl;
-    private int balance;
-    private String fcmToken;
-    private String receivedDriverId;
-    private String applicationNumber;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "name", nullable = true, length = 20)
+    private String name;
+
+    @Basic
+    @Column(name = "phone", nullable = true, length = 20)
+    private String phone;
+
+    @Basic
+    @Column(name = "vcno_hngl_nm", nullable = true, length = 20)
+    private String vcnoHnglNm;
+
+    @Basic
+    @Column(name = "driver_id", nullable = true, length = 20)
+    private String driverId;
+
+    @Basic
+    @Column(name = "region", nullable = true, length = 10)
+    private String region;
+
+    @Basic
+    @Column(name = "loginId", nullable = true, length = 30)
+    private String loginId;
+
+    @Basic
+    @Column(name = "insuranceStatus", nullable = true, length = 10)
+    private String insuranceStatus;
+
+    @Basic
+    @Column(name = "mtdt", nullable = true, length = 8)
+    private String mtdt;
+
+    @Basic
+    @Column(name = "oprn_purp", nullable = true, length = 255)
+    private String oprnPurp;
+
+    @Basic
+    @Column(name = "effectiveStartDate", nullable = true)
+    private Timestamp effectiveStartDate;
+
+    @Basic
+    @Column(name = "effectiveEndDate", nullable = true)
+    private Timestamp effectiveEndDate;
+
+    @Basic
+    @Column(name = "gender", nullable = false)
+    private int gender;
+
+    @Basic
+    @Column(name = "password", nullable = true, length = 255)
+    private String password;
+
+    @Basic
+    @Column(name = "policy_number", nullable = true, length = 20)
+    private String policyNumber;
+
+    @Basic
+    @Column(name = "ssn", nullable = true, length = 255)
+    private String ssn;
+
+    @Basic
+    @Column(name = "status", nullable = true)
+    private Integer status;
+
+    @Basic
+    @Column(name = "createdDate", nullable = true)
+    private Timestamp createdDate;
+
+    @Basic
+    @Column(name = "deletedDate", nullable = true)
+    private Timestamp deletedDate;
+
+    @Basic
+    @Column(name = "modifiedDate", nullable = true)
+    private Timestamp modifiedDate;
+
+    @Basic
+    @Column(name = "seller_id", nullable = true)
+    private Long sellerId;
+
+    @Basic
+    @Column(name = "imagePath", nullable = true, length = 255)
+    private String imagePath;
+
+    @Basic
+    @Column(name = "applyStatus", nullable = true, length = 255)
+    private String applyStatus;
+
+    @Basic
+    @Column(name = "totalWebViewUrl", nullable = true, length = 255)
+    private String totalWebViewUrl;
+
+    @Basic
+    @Column(name = "balance", nullable = false)
+    private int balance;
+
+    @Basic
+    @Column(name = "fcmToken", nullable = true, length = 255)
+    private String fcmToken;
+
+    @Basic
+    @Column(name = "receivedDriverId", nullable = true, length = 255)
+    private String receivedDriverId;
+
+    @Basic
+    @Column(name = "applicationNumber", nullable = true, length = 20)
+    private String applicationNumber;
+
+
     public long getId() {
         return id;
     }
@@ -47,8 +130,7 @@ public class RiderEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name", nullable = true, length = 20)
+
     public String getName() {
         return name;
     }
@@ -57,8 +139,7 @@ public class RiderEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "phone", nullable = true, length = 20)
+
     public String getPhone() {
         return phone;
     }
@@ -67,8 +148,7 @@ public class RiderEntity {
         this.phone = phone;
     }
 
-    @Basic
-    @Column(name = "vcno_hngl_nm", nullable = true, length = 20)
+
     public String getVcnoHnglNm() {
         return vcnoHnglNm;
     }
@@ -77,8 +157,7 @@ public class RiderEntity {
         this.vcnoHnglNm = vcnoHnglNm;
     }
 
-    @Basic
-    @Column(name = "driver_id", nullable = true, length = 20)
+
     public String getDriverId() {
         return driverId;
     }
@@ -87,8 +166,7 @@ public class RiderEntity {
         this.driverId = driverId;
     }
 
-    @Basic
-    @Column(name = "region", nullable = true, length = 10)
+
     public String getRegion() {
         return region;
     }
@@ -97,8 +175,7 @@ public class RiderEntity {
         this.region = region;
     }
 
-    @Basic
-    @Column(name = "loginId", nullable = true, length = 30)
+
     public String getLoginId() {
         return loginId;
     }
@@ -107,8 +184,7 @@ public class RiderEntity {
         this.loginId = loginId;
     }
 
-    @Basic
-    @Column(name = "insuranceStatus", nullable = true, length = 10)
+
     public String getInsuranceStatus() {
         return insuranceStatus;
     }
@@ -117,8 +193,7 @@ public class RiderEntity {
         this.insuranceStatus = insuranceStatus;
     }
 
-    @Basic
-    @Column(name = "mtdt", nullable = true, length = 8)
+
     public String getMtdt() {
         return mtdt;
     }
@@ -127,8 +202,7 @@ public class RiderEntity {
         this.mtdt = mtdt;
     }
 
-    @Basic
-    @Column(name = "oprn_purp", nullable = true, length = 255)
+
     public String getOprnPurp() {
         return oprnPurp;
     }
@@ -137,8 +211,7 @@ public class RiderEntity {
         this.oprnPurp = oprnPurp;
     }
 
-    @Basic
-    @Column(name = "effectiveStartDate", nullable = true)
+
     public Timestamp getEffectiveStartDate() {
         return effectiveStartDate;
     }
@@ -147,28 +220,25 @@ public class RiderEntity {
         this.effectiveStartDate = effectiveStartDate;
     }
 
-    @Basic
-    @Column(name = "effectiveEndDate", nullable = true)
+
     public Timestamp getEffectiveEndDate() {
         return effectiveEndDate;
+    }
+
+
+    public int getGender() {
+        return gender;
     }
 
     public void setEffectiveEndDate(Timestamp effectiveEndDate) {
         this.effectiveEndDate = effectiveEndDate;
     }
 
-    @Basic
-    @Column(name = "gender", nullable = false)
-    public int getGender() {
-        return gender;
-    }
-
     public void setGender(int gender) {
         this.gender = gender;
     }
 
-    @Basic
-    @Column(name = "password", nullable = true, length = 255)
+
     public String getPassword() {
         return password;
     }
@@ -177,8 +247,7 @@ public class RiderEntity {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "policy_number", nullable = true, length = 20)
+
     public String getPolicyNumber() {
         return policyNumber;
     }
@@ -187,8 +256,7 @@ public class RiderEntity {
         this.policyNumber = policyNumber;
     }
 
-    @Basic
-    @Column(name = "ssn", nullable = true, length = 255)
+
     public String getSsn() {
         return ssn;
     }
@@ -197,8 +265,7 @@ public class RiderEntity {
         this.ssn = ssn;
     }
 
-    @Basic
-    @Column(name = "status", nullable = true)
+
     public Integer getStatus() {
         return status;
     }
@@ -207,8 +274,7 @@ public class RiderEntity {
         this.status = status;
     }
 
-    @Basic
-    @Column(name = "createdDate", nullable = true)
+
     public Timestamp getCreatedDate() {
         return createdDate;
     }
@@ -217,8 +283,7 @@ public class RiderEntity {
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "deletedDate", nullable = true)
+
     public Timestamp getDeletedDate() {
         return deletedDate;
     }
@@ -227,8 +292,7 @@ public class RiderEntity {
         this.deletedDate = deletedDate;
     }
 
-    @Basic
-    @Column(name = "modifiedDate", nullable = true)
+
     public Timestamp getModifiedDate() {
         return modifiedDate;
     }
@@ -237,8 +301,7 @@ public class RiderEntity {
         this.modifiedDate = modifiedDate;
     }
 
-    @Basic
-    @Column(name = "seller_id", nullable = true)
+
     public Long getSellerId() {
         return sellerId;
     }
@@ -247,8 +310,7 @@ public class RiderEntity {
         this.sellerId = sellerId;
     }
 
-    @Basic
-    @Column(name = "imagePath", nullable = true, length = 255)
+
     public String getImagePath() {
         return imagePath;
     }
@@ -257,8 +319,7 @@ public class RiderEntity {
         this.imagePath = imagePath;
     }
 
-    @Basic
-    @Column(name = "applyStatus", nullable = true, length = 255)
+
     public String getApplyStatus() {
         return applyStatus;
     }
@@ -267,8 +328,7 @@ public class RiderEntity {
         this.applyStatus = applyStatus;
     }
 
-    @Basic
-    @Column(name = "totalWebViewUrl", nullable = true, length = 255)
+
     public String getTotalWebViewUrl() {
         return totalWebViewUrl;
     }
@@ -277,8 +337,7 @@ public class RiderEntity {
         this.totalWebViewUrl = totalWebViewUrl;
     }
 
-    @Basic
-    @Column(name = "balance", nullable = false)
+
     public int getBalance() {
         return balance;
     }
@@ -287,8 +346,7 @@ public class RiderEntity {
         this.balance = balance;
     }
 
-    @Basic
-    @Column(name = "fcmToken", nullable = true, length = 255)
+
     public String getFcmToken() {
         return fcmToken;
     }
@@ -297,8 +355,7 @@ public class RiderEntity {
         this.fcmToken = fcmToken;
     }
 
-    @Basic
-    @Column(name = "receivedDriverId", nullable = true, length = 255)
+
     public String getReceivedDriverId() {
         return receivedDriverId;
     }
@@ -307,8 +364,7 @@ public class RiderEntity {
         this.receivedDriverId = receivedDriverId;
     }
 
-    @Basic
-    @Column(name = "applicationNumber", nullable = true, length = 20)
+
     public String getApplicationNumber() {
         return applicationNumber;
     }

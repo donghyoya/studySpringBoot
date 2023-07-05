@@ -9,11 +9,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "Seller_roles", schema = "goPlan_KB", catalog = "")
 public class SellerRolesEntity {
-    private long sellerId;
-    private String roles;
 
     @Basic
     @Column(name = "Seller_id", nullable = false)
+    private long sellerId;
+
+    @Basic
+    @Column(name = "roles", nullable = true, length = 255)
+    private String roles;
+
+
     public long getSellerId() {
         return sellerId;
     }
@@ -22,8 +27,7 @@ public class SellerRolesEntity {
         this.sellerId = sellerId;
     }
 
-    @Basic
-    @Column(name = "roles", nullable = true, length = 255)
+
     public String getRoles() {
         return roles;
     }

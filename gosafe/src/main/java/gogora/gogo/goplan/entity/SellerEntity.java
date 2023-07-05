@@ -7,32 +7,97 @@ import java.util.Objects;
 @Entity
 @Table(name = "seller", schema = "goPlan_KB", catalog = "")
 public class SellerEntity {
-    private long id;
-    private Timestamp createdDate;
-    private Timestamp deletedDate;
-    private Timestamp modifiedDate;
-    private long balance;
-    private String name;
-    private String phone;
-    private String tell;
-    private int chargingPerHour;
-    private String sellerCode;
-    private String address;
-    private String bossName;
-    private String businessNumber;
-    private String loginId;
-    private String password;
-    private String secretKey;
-    private String sector;
-    private String apiKey;
-    private String detailAddress;
-    private String upTae;
-    private String sellerUid;
-    private String cmpcd;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "createdDate", nullable = true)
+    private Timestamp createdDate;
+
+    @Basic
+    @Column(name = "deletedDate", nullable = true)
+    private Timestamp deletedDate;
+
+    @Basic
+    @Column(name = "modifiedDate", nullable = true)
+    private Timestamp modifiedDate;
+
+    @Basic
+    @Column(name = "balance", nullable = false)
+    private long balance;
+
+    @Basic
+    @Column(name = "name", nullable = true, length = 50)
+    private String name;
+
+    @Basic
+    @Column(name = "phone", nullable = true, length = 20)
+    private String phone;
+
+    @Basic
+    @Column(name = "tell", nullable = true, length = 20)
+    private String tell;
+
+    @Basic
+    @Column(name = "chargingPerHour", nullable = false)
+    private int chargingPerHour;
+
+    @Basic
+    @Column(name = "seller_code", nullable = true, length = 20)
+    private String sellerCode;
+
+    @Basic
+    @Column(name = "address", nullable = true, length = 255)
+    private String address;
+
+    @Basic
+    @Column(name = "bossName", nullable = true, length = 255)
+    private String bossName;
+
+    @Basic
+    @Column(name = "businessNumber", nullable = true, length = 255)
+    private String businessNumber;
+
+    @Basic
+    @Column(name = "loginId", nullable = true, length = 255)
+    private String loginId;
+
+    @Basic
+    @Column(name = "password", nullable = true, length = 255)
+    private String password;
+
+    @Basic
+    @Column(name = "secretKey", nullable = true, length = 255)
+    private String secretKey;
+
+    @Basic
+    @Column(name = "sector", nullable = true, length = 255)
+    private String sector;
+
+    @Basic
+    @Column(name = "apiKey", nullable = true, length = 255)
+    private String apiKey;
+
+    @Basic
+    @Column(name = "detailAddress", nullable = true, length = 255)
+    private String detailAddress;
+
+    @Basic
+    @Column(name = "upTae", nullable = true, length = 255)
+    private String upTae;
+
+    @Basic
+    @Column(name = "seller_UID", nullable = true, length = 255)
+    private String sellerUid;
+
+    @Basic
+    @Column(name = "cmpcd", nullable = true, length = 255)
+    private String cmpcd;
+
+
     public long getId() {
         return id;
     }
@@ -41,8 +106,7 @@ public class SellerEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "createdDate", nullable = true)
+
     public Timestamp getCreatedDate() {
         return createdDate;
     }
@@ -51,8 +115,7 @@ public class SellerEntity {
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "deletedDate", nullable = true)
+
     public Timestamp getDeletedDate() {
         return deletedDate;
     }
@@ -61,8 +124,7 @@ public class SellerEntity {
         this.deletedDate = deletedDate;
     }
 
-    @Basic
-    @Column(name = "modifiedDate", nullable = true)
+
     public Timestamp getModifiedDate() {
         return modifiedDate;
     }
@@ -71,8 +133,7 @@ public class SellerEntity {
         this.modifiedDate = modifiedDate;
     }
 
-    @Basic
-    @Column(name = "balance", nullable = false)
+
     public long getBalance() {
         return balance;
     }
@@ -81,8 +142,7 @@ public class SellerEntity {
         this.balance = balance;
     }
 
-    @Basic
-    @Column(name = "name", nullable = true, length = 50)
+
     public String getName() {
         return name;
     }
@@ -91,8 +151,7 @@ public class SellerEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "phone", nullable = true, length = 20)
+
     public String getPhone() {
         return phone;
     }
@@ -101,8 +160,7 @@ public class SellerEntity {
         this.phone = phone;
     }
 
-    @Basic
-    @Column(name = "tell", nullable = true, length = 20)
+
     public String getTell() {
         return tell;
     }
@@ -111,8 +169,7 @@ public class SellerEntity {
         this.tell = tell;
     }
 
-    @Basic
-    @Column(name = "chargingPerHour", nullable = false)
+
     public int getChargingPerHour() {
         return chargingPerHour;
     }
@@ -121,8 +178,7 @@ public class SellerEntity {
         this.chargingPerHour = chargingPerHour;
     }
 
-    @Basic
-    @Column(name = "seller_code", nullable = true, length = 20)
+
     public String getSellerCode() {
         return sellerCode;
     }
@@ -131,8 +187,7 @@ public class SellerEntity {
         this.sellerCode = sellerCode;
     }
 
-    @Basic
-    @Column(name = "address", nullable = true, length = 255)
+
     public String getAddress() {
         return address;
     }
@@ -141,8 +196,7 @@ public class SellerEntity {
         this.address = address;
     }
 
-    @Basic
-    @Column(name = "bossName", nullable = true, length = 255)
+
     public String getBossName() {
         return bossName;
     }
@@ -151,8 +205,7 @@ public class SellerEntity {
         this.bossName = bossName;
     }
 
-    @Basic
-    @Column(name = "businessNumber", nullable = true, length = 255)
+
     public String getBusinessNumber() {
         return businessNumber;
     }
@@ -161,8 +214,7 @@ public class SellerEntity {
         this.businessNumber = businessNumber;
     }
 
-    @Basic
-    @Column(name = "loginId", nullable = true, length = 255)
+
     public String getLoginId() {
         return loginId;
     }
@@ -171,8 +223,7 @@ public class SellerEntity {
         this.loginId = loginId;
     }
 
-    @Basic
-    @Column(name = "password", nullable = true, length = 255)
+
     public String getPassword() {
         return password;
     }
@@ -181,8 +232,7 @@ public class SellerEntity {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "secretKey", nullable = true, length = 255)
+
     public String getSecretKey() {
         return secretKey;
     }
@@ -191,8 +241,7 @@ public class SellerEntity {
         this.secretKey = secretKey;
     }
 
-    @Basic
-    @Column(name = "sector", nullable = true, length = 255)
+
     public String getSector() {
         return sector;
     }
@@ -201,8 +250,7 @@ public class SellerEntity {
         this.sector = sector;
     }
 
-    @Basic
-    @Column(name = "apiKey", nullable = true, length = 255)
+
     public String getApiKey() {
         return apiKey;
     }
@@ -211,8 +259,7 @@ public class SellerEntity {
         this.apiKey = apiKey;
     }
 
-    @Basic
-    @Column(name = "detailAddress", nullable = true, length = 255)
+
     public String getDetailAddress() {
         return detailAddress;
     }
@@ -221,8 +268,7 @@ public class SellerEntity {
         this.detailAddress = detailAddress;
     }
 
-    @Basic
-    @Column(name = "upTae", nullable = true, length = 255)
+
     public String getUpTae() {
         return upTae;
     }
@@ -231,8 +277,7 @@ public class SellerEntity {
         this.upTae = upTae;
     }
 
-    @Basic
-    @Column(name = "seller_UID", nullable = true, length = 255)
+
     public String getSellerUid() {
         return sellerUid;
     }
@@ -241,8 +286,7 @@ public class SellerEntity {
         this.sellerUid = sellerUid;
     }
 
-    @Basic
-    @Column(name = "cmpcd", nullable = true, length = 255)
+
     public String getCmpcd() {
         return cmpcd;
     }

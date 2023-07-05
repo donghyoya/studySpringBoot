@@ -7,14 +7,25 @@ import java.util.Objects;
 @Entity
 @Table(name = "kb_balance_history", schema = "goPlan_KB", catalog = "")
 public class KbBalanceHistoryEntity {
-    private long id;
-    private int balance;
-    private Date date;
-    private String cmpcd;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "balance", nullable = false)
+    private int balance;
+
+    @Basic
+    @Column(name = "date", nullable = true)
+    private Date date;
+
+    @Basic
+    @Column(name = "cmpcd", nullable = true, length = 3)
+    private String cmpcd;
+
+
     public long getId() {
         return id;
     }
@@ -23,8 +34,7 @@ public class KbBalanceHistoryEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "balance", nullable = false)
+
     public int getBalance() {
         return balance;
     }
@@ -33,8 +43,7 @@ public class KbBalanceHistoryEntity {
         this.balance = balance;
     }
 
-    @Basic
-    @Column(name = "date", nullable = true)
+
     public Date getDate() {
         return date;
     }
@@ -43,8 +52,7 @@ public class KbBalanceHistoryEntity {
         this.date = date;
     }
 
-    @Basic
-    @Column(name = "cmpcd", nullable = true, length = 3)
+
     public String getCmpcd() {
         return cmpcd;
     }

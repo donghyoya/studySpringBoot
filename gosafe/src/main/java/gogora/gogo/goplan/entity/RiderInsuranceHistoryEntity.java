@@ -7,19 +7,45 @@ import java.util.Objects;
 @Entity
 @Table(name = "rider_insurance_history", schema = "goPlan_KB", catalog = "")
 public class RiderInsuranceHistoryEntity {
-    private long id;
-    private Timestamp endorsementCompleteTime;
-    private Timestamp endorsementRequestTime;
-    private Timestamp underwritingCompleteTime;
-    private Timestamp underwritingRequestTime;
-    private Timestamp withdrawCompleteTime;
-    private Timestamp withdrawRequestTime;
-    private Long riderId;
-    private Long riderWebId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "endorsement_complete_time", nullable = true)
+    private Timestamp endorsementCompleteTime;
+
+    @Basic
+    @Column(name = "endorsement_request_time", nullable = true)
+    private Timestamp endorsementRequestTime;
+
+    @Basic
+    @Column(name = "underwriting_complete_time", nullable = true)
+    private Timestamp underwritingCompleteTime;
+
+    @Basic
+    @Column(name = "underwriting_request_time", nullable = true)
+    private Timestamp underwritingRequestTime;
+
+    @Basic
+    @Column(name = "withdraw_complete_time", nullable = true)
+    private Timestamp withdrawCompleteTime;
+
+    @Basic
+    @Column(name = "withdraw_request_time", nullable = true)
+    private Timestamp withdrawRequestTime;
+
+    @Basic
+    @Column(name = "rider_id", nullable = true)
+    private Long riderId;
+
+    @Basic
+    @Column(name = "riderWeb_id", nullable = true)
+    private Long riderWebId;
+
+
     public long getId() {
         return id;
     }
@@ -28,8 +54,7 @@ public class RiderInsuranceHistoryEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "endorsement_complete_time", nullable = true)
+
     public Timestamp getEndorsementCompleteTime() {
         return endorsementCompleteTime;
     }
@@ -38,8 +63,7 @@ public class RiderInsuranceHistoryEntity {
         this.endorsementCompleteTime = endorsementCompleteTime;
     }
 
-    @Basic
-    @Column(name = "endorsement_request_time", nullable = true)
+
     public Timestamp getEndorsementRequestTime() {
         return endorsementRequestTime;
     }
@@ -48,8 +72,7 @@ public class RiderInsuranceHistoryEntity {
         this.endorsementRequestTime = endorsementRequestTime;
     }
 
-    @Basic
-    @Column(name = "underwriting_complete_time", nullable = true)
+
     public Timestamp getUnderwritingCompleteTime() {
         return underwritingCompleteTime;
     }
@@ -58,8 +81,7 @@ public class RiderInsuranceHistoryEntity {
         this.underwritingCompleteTime = underwritingCompleteTime;
     }
 
-    @Basic
-    @Column(name = "underwriting_request_time", nullable = true)
+
     public Timestamp getUnderwritingRequestTime() {
         return underwritingRequestTime;
     }
@@ -68,8 +90,7 @@ public class RiderInsuranceHistoryEntity {
         this.underwritingRequestTime = underwritingRequestTime;
     }
 
-    @Basic
-    @Column(name = "withdraw_complete_time", nullable = true)
+
     public Timestamp getWithdrawCompleteTime() {
         return withdrawCompleteTime;
     }
@@ -77,9 +98,6 @@ public class RiderInsuranceHistoryEntity {
     public void setWithdrawCompleteTime(Timestamp withdrawCompleteTime) {
         this.withdrawCompleteTime = withdrawCompleteTime;
     }
-
-    @Basic
-    @Column(name = "withdraw_request_time", nullable = true)
     public Timestamp getWithdrawRequestTime() {
         return withdrawRequestTime;
     }
@@ -88,8 +106,7 @@ public class RiderInsuranceHistoryEntity {
         this.withdrawRequestTime = withdrawRequestTime;
     }
 
-    @Basic
-    @Column(name = "rider_id", nullable = true)
+
     public Long getRiderId() {
         return riderId;
     }
@@ -98,8 +115,7 @@ public class RiderInsuranceHistoryEntity {
         this.riderId = riderId;
     }
 
-    @Basic
-    @Column(name = "riderWeb_id", nullable = true)
+
     public Long getRiderWebId() {
         return riderWebId;
     }
