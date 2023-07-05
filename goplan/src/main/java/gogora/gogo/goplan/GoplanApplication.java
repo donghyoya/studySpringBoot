@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GosafeApplication {
+public class GoplanApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GosafeApplication.class, args);
+		SpringApplication.run(GoplanApplication.class, args);
 	}
 
 }
