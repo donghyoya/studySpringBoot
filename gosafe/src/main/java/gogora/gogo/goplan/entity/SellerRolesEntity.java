@@ -1,4 +1,4 @@
-package gogora.gogo.gosafe.entity;
+package gogora.gogo.goplan.entity;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -7,19 +7,19 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "rider_roles", schema = "goPlan_KB", catalog = "")
-public class RiderRolesEntity {
-    private long driverId;
+@Table(name = "Seller_roles", schema = "goPlan_KB", catalog = "")
+public class SellerRolesEntity {
+    private long sellerId;
     private String roles;
 
     @Basic
-    @Column(name = "driver_id", nullable = false)
-    public long getDriverId() {
-        return driverId;
+    @Column(name = "Seller_id", nullable = false)
+    public long getSellerId() {
+        return sellerId;
     }
 
-    public void setDriverId(long driverId) {
-        this.driverId = driverId;
+    public void setSellerId(long sellerId) {
+        this.sellerId = sellerId;
     }
 
     @Basic
@@ -36,12 +36,12 @@ public class RiderRolesEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RiderRolesEntity that = (RiderRolesEntity) o;
-        return driverId == that.driverId && Objects.equals(roles, that.roles);
+        SellerRolesEntity that = (SellerRolesEntity) o;
+        return sellerId == that.sellerId && Objects.equals(roles, that.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(driverId, roles);
+        return Objects.hash(sellerId, roles);
     }
 }

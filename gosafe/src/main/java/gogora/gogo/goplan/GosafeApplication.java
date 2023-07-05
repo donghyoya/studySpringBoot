@@ -1,4 +1,4 @@
-package gogora.gogo.gosafe;
+package gogora.gogo.goplan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package gogora.gogo.gosafe.entity;
+package gogora.gogo.goplan.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -7,21 +7,52 @@ import java.util.Objects;
 @Entity
 @Table(name = "accident", schema = "goPlan_KB", catalog = "")
 public class AccidentEntity {
-    private long id;
-    private Timestamp createdDate;
-    private Timestamp deletedDate;
-    private Timestamp modifiedDate;
-    private Timestamp accidentTime;
-    private String claimNumber;
-    private Timestamp claimTime;
-    private Long callId;
-    private Integer compensation;
-    private String driverId;
-    private String policyNumber;
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
+    private long id;
+
+    @Basic
+    @Column(name = "createdDate", nullable = true)
+    private Timestamp createdDate;
+
+    @Basic
+    @Column(name = "deletedDate", nullable = true)
+    private Timestamp deletedDate;
+
+    @Basic
+    @Column(name = "modifiedDate", nullable = true)
+    private Timestamp modifiedDate;
+
+    @Basic
+    @Column(name = "accident_time", nullable = true)
+    private Timestamp accidentTime;
+
+    @Basic
+    @Column(name = "claim_number", nullable = true, length = 64)
+    private String claimNumber;
+
+    @Basic
+    @Column(name = "claim_time", nullable = true)
+    private Timestamp claimTime;
+
+    @Basic
+    @Column(name = "call_id", nullable = true)
+    private Long callId;
+
+    @Basic
+    @Column(name = "compensation", nullable = true)
+    private Integer compensation;
+
+    @Basic
+    @Column(name = "driver_id", nullable = true, length = 20)
+    private String driverId;
+
+    @Basic
+    @Column(name = "policy_number", nullable = true, length = 20)
+    private String policyNumber;
+
+
     public long getId() {
         return id;
     }
@@ -30,8 +61,7 @@ public class AccidentEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "createdDate", nullable = true)
+
     public Timestamp getCreatedDate() {
         return createdDate;
     }
@@ -40,8 +70,7 @@ public class AccidentEntity {
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "deletedDate", nullable = true)
+
     public Timestamp getDeletedDate() {
         return deletedDate;
     }
@@ -50,8 +79,7 @@ public class AccidentEntity {
         this.deletedDate = deletedDate;
     }
 
-    @Basic
-    @Column(name = "modifiedDate", nullable = true)
+
     public Timestamp getModifiedDate() {
         return modifiedDate;
     }
@@ -60,8 +88,7 @@ public class AccidentEntity {
         this.modifiedDate = modifiedDate;
     }
 
-    @Basic
-    @Column(name = "accident_time", nullable = true)
+
     public Timestamp getAccidentTime() {
         return accidentTime;
     }
@@ -70,8 +97,7 @@ public class AccidentEntity {
         this.accidentTime = accidentTime;
     }
 
-    @Basic
-    @Column(name = "claim_number", nullable = true, length = 64)
+
     public String getClaimNumber() {
         return claimNumber;
     }
@@ -80,8 +106,7 @@ public class AccidentEntity {
         this.claimNumber = claimNumber;
     }
 
-    @Basic
-    @Column(name = "claim_time", nullable = true)
+
     public Timestamp getClaimTime() {
         return claimTime;
     }
@@ -90,8 +115,7 @@ public class AccidentEntity {
         this.claimTime = claimTime;
     }
 
-    @Basic
-    @Column(name = "call_id", nullable = true)
+
     public Long getCallId() {
         return callId;
     }
@@ -100,8 +124,7 @@ public class AccidentEntity {
         this.callId = callId;
     }
 
-    @Basic
-    @Column(name = "compensation", nullable = true)
+
     public Integer getCompensation() {
         return compensation;
     }
@@ -110,8 +133,7 @@ public class AccidentEntity {
         this.compensation = compensation;
     }
 
-    @Basic
-    @Column(name = "driver_id", nullable = true, length = 20)
+
     public String getDriverId() {
         return driverId;
     }
@@ -120,8 +142,7 @@ public class AccidentEntity {
         this.driverId = driverId;
     }
 
-    @Basic
-    @Column(name = "policy_number", nullable = true, length = 20)
+
     public String getPolicyNumber() {
         return policyNumber;
     }

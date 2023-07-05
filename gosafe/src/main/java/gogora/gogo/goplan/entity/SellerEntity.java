@@ -1,4 +1,4 @@
-package gogora.gogo.gosafe.entity;
+package gogora.gogo.goplan.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

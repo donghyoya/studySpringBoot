@@ -1,4 +1,4 @@
-package gogora.gogo.gosafe.entity;
+package gogora.gogo.goplan.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -7,7 +7,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "insurance_history", schema = "goPlan_KB", catalog = "")
 public class InsuranceHistoryEntity {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", nullable = false)
     private long id;
+
+    @Basic
+    @Column(name = "applicationNumber", nullable = true, length = 20)
     private String applicationNumber;
     private Timestamp createdDate;
     private String policyNumber;
@@ -20,9 +27,7 @@ public class InsuranceHistoryEntity {
     private Long sellerId;
     private String ageYn;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id", nullable = false)
+
     public long getId() {
         return id;
     }
@@ -31,8 +36,7 @@ public class InsuranceHistoryEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "applicationNumber", nullable = true, length = 20)
+
     public String getApplicationNumber() {
         return applicationNumber;
     }
