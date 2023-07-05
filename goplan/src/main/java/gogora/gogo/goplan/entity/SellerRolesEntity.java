@@ -1,16 +1,13 @@
 package gogora.gogo.goplan.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Seller_roles", schema = "goPlan_KB", catalog = "")
 public class SellerRolesEntity {
 
-    @Basic
+    @Id
     @Column(name = "Seller_id", nullable = false)
     private long sellerId;
 
