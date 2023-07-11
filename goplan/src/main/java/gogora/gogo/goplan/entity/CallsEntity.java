@@ -7,26 +7,61 @@ import java.util.Objects;
 @Entity
 @Table(name = "calls", schema = "goPlan_KB", catalog = "")
 public class CallsEntity {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", nullable = false)
     private long id;
+
+    @Basic
+    @Column(name = "balance", nullable = false)
     private long balance;
+
+    @Basic
+    @Column(name = "appoint_time", nullable = true)
     private Timestamp appointTime;
+
+    @Basic
+    @Column(name = "complete_time", nullable = true)
     private Timestamp completeTime;
+
+    @Basic
+    @Column(name = "call_id", nullable = true, length = 30)
     private String callId;
+
+    @Basic
+    @Column(name = "pickup_time", nullable = true)
     private Timestamp pickupTime;
+
+    @Basic
+    @Column(name = "request_time", nullable = true)
     private Timestamp requestTime;
+
+    @Basic
+    @Column(name = "delivery_Address", nullable = true, length = 500)
     private String deliveryAddress;
+
+    @Basic
+    @Column(name = "delivery_status", nullable = true, length = 20)
     private String deliveryStatus;
+
+    @Basic
+    @Column(name = "modifiedDate", nullable = true)
     private Timestamp modifiedDate;
+
+    @Basic
+    @Column(name = "pickUp_Address", nullable = true, length = 500)
     private String pickUpAddress;
+
+    @Basic
+    @Column(name = "rider_id", nullable = true)
     private Long riderId;
     private String companyName;
     private String kbCallId;
     private Long totalTime;
     private long dailyTotalRiding;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id", nullable = false)
+
     public long getId() {
         return id;
     }
@@ -35,8 +70,7 @@ public class CallsEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "balance", nullable = false)
+
     public long getBalance() {
         return balance;
     }
@@ -45,8 +79,7 @@ public class CallsEntity {
         this.balance = balance;
     }
 
-    @Basic
-    @Column(name = "appoint_time", nullable = true)
+
     public Timestamp getAppointTime() {
         return appointTime;
     }
@@ -55,8 +88,7 @@ public class CallsEntity {
         this.appointTime = appointTime;
     }
 
-    @Basic
-    @Column(name = "complete_time", nullable = true)
+
     public Timestamp getCompleteTime() {
         return completeTime;
     }
@@ -65,8 +97,7 @@ public class CallsEntity {
         this.completeTime = completeTime;
     }
 
-    @Basic
-    @Column(name = "call_id", nullable = true, length = 30)
+
     public String getCallId() {
         return callId;
     }
@@ -75,8 +106,7 @@ public class CallsEntity {
         this.callId = callId;
     }
 
-    @Basic
-    @Column(name = "pickup_time", nullable = true)
+
     public Timestamp getPickupTime() {
         return pickupTime;
     }
@@ -85,8 +115,7 @@ public class CallsEntity {
         this.pickupTime = pickupTime;
     }
 
-    @Basic
-    @Column(name = "request_time", nullable = true)
+
     public Timestamp getRequestTime() {
         return requestTime;
     }
@@ -95,8 +124,7 @@ public class CallsEntity {
         this.requestTime = requestTime;
     }
 
-    @Basic
-    @Column(name = "delivery_Address", nullable = true, length = 500)
+
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
@@ -105,8 +133,7 @@ public class CallsEntity {
         this.deliveryAddress = deliveryAddress;
     }
 
-    @Basic
-    @Column(name = "delivery_status", nullable = true, length = 20)
+
     public String getDeliveryStatus() {
         return deliveryStatus;
     }
@@ -115,8 +142,7 @@ public class CallsEntity {
         this.deliveryStatus = deliveryStatus;
     }
 
-    @Basic
-    @Column(name = "modifiedDate", nullable = true)
+
     public Timestamp getModifiedDate() {
         return modifiedDate;
     }
@@ -125,8 +151,7 @@ public class CallsEntity {
         this.modifiedDate = modifiedDate;
     }
 
-    @Basic
-    @Column(name = "pickUp_Address", nullable = true, length = 500)
+
     public String getPickUpAddress() {
         return pickUpAddress;
     }
@@ -135,8 +160,7 @@ public class CallsEntity {
         this.pickUpAddress = pickUpAddress;
     }
 
-    @Basic
-    @Column(name = "rider_id", nullable = true)
+
     public Long getRiderId() {
         return riderId;
     }

@@ -2,123 +2,202 @@ package gogora.gogo.goplan.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "rider", schema = "goPlan_KB", catalog = "")
 public class RiderEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id", nullable = false)
-    private long id;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @Column(name = "id", nullable = false)
+//    private long id;
+//
+//    @Basic
+//    @Column(name = "name", nullable = true, length = 20)
+//    private String name;
+//
+//    @Basic
+//    @Column(name = "phone", nullable = true, length = 20)
+//    private String phone;
+//
+//    @Basic
+//    @Column(name = "vcno_hngl_nm", nullable = true, length = 20)
+//    private String vcnoHnglNm;
+//
+//    @Basic
+//    @Column(name = "driver_id", nullable = true, length = 20)
+//    private String driverId;
+//
+//    @Basic
+//    @Column(name = "region", nullable = true, length = 10)
+//    private String region;
+//
+//    @Basic
+//    @Column(name = "loginId", nullable = true, length = 30)
+//    private String loginId;
+//
+//    @Basic
+//    @Column(name = "insuranceStatus", nullable = true, length = 10)
+//    private String insuranceStatus;
+//
+//    @Basic
+//    @Column(name = "mtdt", nullable = true, length = 8)
+//    private String mtdt;
+//
+//    @Basic
+//    @Column(name = "oprn_purp", nullable = true, length = 255)
+//    private String oprnPurp;
+//
+//    @Basic
+//    @Column(name = "effectiveStartDate", nullable = true)
+//    private Timestamp effectiveStartDate;
+//
+//    @Basic
+//    @Column(name = "effectiveEndDate", nullable = true)
+//    private Timestamp effectiveEndDate;
+//
+//    @Basic
+//    @Column(name = "gender", nullable = false)
+//    private Integer gender;
+//
+//    @Basic
+//    @Column(name = "password", nullable = true, length = 255)
+//    private String password;
+//
+//    @Basic
+//    @Column(name = "policy_number", nullable = true, length = 20)
+//    private String policyNumber;
+//
+//    @Basic
+//    @Column(name = "ssn", nullable = true, length = 255)
+//    private String ssn;
+//
+//    @Basic
+//    @Column(name = "status", nullable = true)
+//    private int status;
+//
+//    @Basic
+//    @Column(name = "createdDate", nullable = true)
+//    private Timestamp createdDate;
+//
+//    @Basic
+//    @Column(name = "deletedDate", nullable = true)
+//    private Timestamp deletedDate;
+//
+//    @Basic
+//    @Column(name = "modifiedDate", nullable = true)
+//    private Timestamp modifiedDate;
+//
+//    @Basic
+//    @Column(name = "seller_id", nullable = true)
+//    private Long sellerId;
+//
+//    @Basic
+//    @Column(name = "imagePath", nullable = true, length = 255)
+//    private String imagePath;
+//
+//    @Basic
+//    @Column(name = "applyStatus", nullable = true, length = 255)
+//    private String applyStatus;
+//
+//    @Basic
+//    @Column(name = "totalWebViewUrl", nullable = true, length = 255)
+//    private String totalWebViewUrl;
+//
+//    @Basic
+//    @Column(name = "balance", nullable = false)
+//    private int balance;
+//
+//    @Basic
+//    @Column(name = "fcmToken", nullable = true, length = 255)
+//    private String fcmToken;
+//
+//    @Basic
+//    @Column(name = "receivedDriverId", nullable = true, length = 255)
+//    private String receivedDriverId;
+//
+//    @Basic
+//    @Column(name = "applicationNumber", nullable = true, length = 20)
+//    private String applicationNumber;
 
-    @Basic
-    @Column(name = "name", nullable = true, length = 20)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
 
-    @Basic
-    @Column(name = "phone", nullable = true, length = 20)
+    @Column(unique = true)
     private String phone;
 
-    @Basic
-    @Column(name = "vcno_hngl_nm", nullable = true, length = 20)
+    @Column(name = "vcno_hngl_nm")
     private String vcnoHnglNm;
 
-    @Basic
-    @Column(name = "driver_id", nullable = true, length = 20)
+    @Column(name = "driver_id")
     private String driverId;
 
-    @Basic
-    @Column(name = "region", nullable = true, length = 10)
     private String region;
 
-    @Basic
-    @Column(name = "loginId", nullable = true, length = 30)
+    @Column(name = "loginId")
     private String loginId;
 
-    @Basic
-    @Column(name = "insuranceStatus", nullable = true, length = 10)
+    @Column(name = "insuranceStatus")
     private String insuranceStatus;
 
-    @Basic
-    @Column(name = "mtdt", nullable = true, length = 8)
     private String mtdt;
 
-    @Basic
-    @Column(name = "oprn_purp", nullable = true, length = 255)
+    @Column(name = "oprn_purp")
     private String oprnPurp;
 
-    @Basic
-    @Column(name = "effectiveStartDate", nullable = true)
-    private Timestamp effectiveStartDate;
+    @Column(name = "effectiveStartDate")
+    private LocalDateTime effectiveStartDate;
 
-    @Basic
-    @Column(name = "effectiveEndDate", nullable = true)
-    private Timestamp effectiveEndDate;
+    @Column(name = "effectiveEndDate")
+    private LocalDateTime effectiveEndDate;
 
-    @Basic
-    @Column(name = "gender", nullable = false)
-    private int gender;
+    private Integer gender;
 
-    @Basic
-    @Column(name = "password", nullable = true, length = 255)
     private String password;
 
-    @Basic
-    @Column(name = "policy_number", nullable = true, length = 20)
+    @Column(name = "policy_number")
     private String policyNumber;
 
-    @Basic
-    @Column(name = "ssn", nullable = true, length = 255)
     private String ssn;
 
-    @Basic
-    @Column(name = "status", nullable = true)
     private Integer status;
 
-    @Basic
-    @Column(name = "createdDate", nullable = true)
-    private Timestamp createdDate;
+    @Column(name = "createdDate")
+    private LocalDateTime createdDate;
 
-    @Basic
-    @Column(name = "deletedDate", nullable = true)
-    private Timestamp deletedDate;
+    @Column(name = "deletedDate")
+    private LocalDateTime deletedDate;
 
-    @Basic
-    @Column(name = "modifiedDate", nullable = true)
-    private Timestamp modifiedDate;
+    @Column(name = "modifiedDate")
+    private LocalDateTime modifiedDate;
 
-    @Basic
-    @Column(name = "seller_id", nullable = true)
+    @Column(name = "seller_id")
     private Long sellerId;
 
-    @Basic
-    @Column(name = "imagePath", nullable = true, length = 255)
+    @Column(name = "imagePath")
     private String imagePath;
 
-    @Basic
-    @Column(name = "applyStatus", nullable = true, length = 255)
+    @Column(name = "applyStatus")
     private String applyStatus;
 
-    @Basic
-    @Column(name = "totalWebViewUrl", nullable = true, length = 255)
+    @Column(name = "totalWebViewUrl")
     private String totalWebViewUrl;
 
-    @Basic
-    @Column(name = "balance", nullable = false)
-    private int balance;
+    private Integer balance;
 
-    @Basic
-    @Column(name = "fcmToken", nullable = true, length = 255)
+    @Column(name = "fcmToken")
     private String fcmToken;
 
-    @Basic
-    @Column(name = "receivedDriverId", nullable = true, length = 255)
+    @Column(name = "receivedDriverId")
     private String receivedDriverId;
 
-    @Basic
-    @Column(name = "applicationNumber", nullable = true, length = 20)
+    @Column(name = "applicationNumber")
     private String applicationNumber;
 
 
@@ -212,16 +291,16 @@ public class RiderEntity {
     }
 
 
-    public Timestamp getEffectiveStartDate() {
+    public LocalDateTime getEffectiveStartDate() {
         return effectiveStartDate;
     }
 
-    public void setEffectiveStartDate(Timestamp effectiveStartDate) {
+    public void setEffectiveStartDate(LocalDateTime effectiveStartDate) {
         this.effectiveStartDate = effectiveStartDate;
     }
 
 
-    public Timestamp getEffectiveEndDate() {
+    public LocalDateTime getEffectiveEndDate() {
         return effectiveEndDate;
     }
 
@@ -230,7 +309,7 @@ public class RiderEntity {
         return gender;
     }
 
-    public void setEffectiveEndDate(Timestamp effectiveEndDate) {
+    public void setEffectiveEndDate(LocalDateTime effectiveEndDate) {
         this.effectiveEndDate = effectiveEndDate;
     }
 
@@ -275,29 +354,29 @@ public class RiderEntity {
     }
 
 
-    public Timestamp getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
 
-    public Timestamp getDeletedDate() {
+    public LocalDateTime getDeletedDate() {
         return deletedDate;
     }
 
-    public void setDeletedDate(Timestamp deletedDate) {
+    public void setDeletedDate(LocalDateTime deletedDate) {
         this.deletedDate = deletedDate;
     }
 
 
-    public Timestamp getModifiedDate() {
+    public LocalDateTime getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(Timestamp modifiedDate) {
+    public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

@@ -1,0 +1,44 @@
+server:
+  port: 9400
+  servlet:
+    context-path: /api/theCreditableCMS
+    encoding:
+      charset: UTF-8
+      enabled:
+      force: true
+
+spring:
+  jwt:
+    secret: gogofndgogopay#!
+  datasource:
+    url: jdbc:mariadb://dev.mnworks.kr:3306/theCreditable?serverTimezone=Asia/Seoul
+    username: creditable
+    password: dev1004
+    datasource: driver-class-name=org.mariadb.jdbc.Driver
+  spring-doc:
+    api-docs:
+      groups:
+        enabled: true
+    swagger-ui:
+      path: /swagger-ui.html
+      displayRequestDuration: true
+      groups-order: DESC
+  jpa:
+    show-sql: true
+    open-in-view: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        default_batch_fetch_size: 1000
+app:
+#  filePath: /var/www/html/goPay/img/bizNum/
+  filePath: /home/develop2/theCreditable/CMS/resource
+  hash: 0049277389423274724040002388482939932
+hash: gogofndgogopay#3
+billing: gogofndbilling
