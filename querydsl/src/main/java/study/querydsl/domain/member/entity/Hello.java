@@ -1,4 +1,4 @@
-package study.querydsl.entity;
+package study.querydsl.domain.member.entity;
 
 import lombok.Generated;
 import lombok.Getter;
