@@ -1,4 +1,4 @@
-package study.querydsl.contoller;
+package study.querydsl.domain.Hello.contoller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

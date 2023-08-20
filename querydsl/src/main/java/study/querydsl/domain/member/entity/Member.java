@@ -1,13 +1,13 @@
 package study.querydsl.domain.member.entity;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import study.querydsl.domain.team.entity.Team;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter@Setter
+//@Data 는 양방향 관계일때 toString에 StackOverFlow가 발생
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
@@ -21,6 +21,18 @@ public class Member {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                // print only team id to avoid recursion
+                ", teamId=" + (team != null ? team.getId() : null) +
+                '}';
+    }
+
 
     public Member(String username, int age){
         this(username,age,null);

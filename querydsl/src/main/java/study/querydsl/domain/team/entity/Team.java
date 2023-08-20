@@ -1,8 +1,7 @@
-package study.querydsl.domain.member.entity;
+package study.querydsl.domain.team.entity;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import study.querydsl.domain.member.entity.Member;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter@Setter
+//@Data 는 양방향 관계일때 toString에 StackOverFlow가 발생
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Team {
 
@@ -27,4 +27,14 @@ public class Team {
     public Team(String name){
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                // 재귀를 피하기 위해 members를 출력하지 않습니다.
+                '}';
+    }
+
 }
