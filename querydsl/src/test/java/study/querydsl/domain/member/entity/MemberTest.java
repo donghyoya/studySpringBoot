@@ -267,7 +267,7 @@ public class MemberTest {
     }
 
     @Test
-    public void join(){
+    public void querydslJoin(){
         List<Member> members = jpaQueryFactory
                 .selectFrom(qMember)
                 .join(qMember.team, qTeam)
@@ -275,6 +275,29 @@ public class MemberTest {
                 .fetch();
 
         for(Member member : members){
+            System.out.println("member = " + member);
+        }
+    }
+
+    /**
+     * theta 조인
+     * 회원의 이름이 팀 이름과 같은 회원 조회
+     */
+    @Test
+    public void querydsl_theta_Join2(){
+        em.persist(new Member("teamC"));
+        em.persist(new Member("teamD"));
+
+        //outer 조인 불가능(inner 조인반대)
+        List<Member> members = jpaQueryFactory
+                .select(qMember)
+                .from(qMember, qTeam)
+                .where(qMember.username.eq(qTeam.name)) //회원 이름과 팀 명 같은것을 출력
+                .fetch();
+
+
+
+        for(Member member: members){
             System.out.println("member = " + member);
         }
     }

@@ -33,6 +33,11 @@ public class Member {
                 '}';
     }
 
+    public Member(String username){
+        this.username = username;
+        this.age = 0;
+    }
+
 
     public Member(String username, int age){
         this(username,age,null);
