@@ -301,4 +301,50 @@ public class MemberTest {
             System.out.println("member = " + member);
         }
     }
+
+    /**
+     * 회원과 팀을 join하면서, 팀 이름이 teamA인 팀만 join, 회원은 모두 조회
+     * jpal: select m, t from Member m left join m.team t on t.name = 'teamA'
+     * sql: select * from
+     */
+    @Test
+    public void join_on_filtering(){
+
+        List<Tuple> result = jpaQueryFactory
+                .select(qMember, qTeam)
+                .from(qMember)
+                .leftJoin(qMember.team, qTeam).on(qTeam.name.eq("teamC"))
+                .where()//qTeam.isNotNull()
+                .fetch();
+        List<Tuple> result2 = jpaQueryFactory
+                .select(qMember, qTeam)
+                .from(qMember)
+                .join(qMember.team, qTeam).on(qTeam.name.eq("teamC"))
+                .where()
+                .fetch();
+
+        for (Tuple tuple : result) {
+            System.out.println("tuple = " + tuple);
+        }
+        System.out.println(" ============================= ");
+        for (Tuple tuple : result2) {
+            System.out.println("tuple2 = " + tuple);
+        }
+    }
+    @Test
+    public void join_on_filtering2(){
+        em.persist(new Member("teamA"));
+        em.persist(new Member("teamC"));
+        em.persist(new Member("teamD"));
+
+        List<Tuple> result = jpaQueryFactory
+                .select(qMember, qTeam)
+                .from(qMember)
+                .join(qTeam).on(qMember.username.eq(qTeam.name))
+                .fetch();
+
+        for (Tuple tuple : result) {
+            System.out.println("tuple = " + tuple);
+        }
+    }
 }
