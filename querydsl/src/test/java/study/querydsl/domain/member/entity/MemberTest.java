@@ -3,6 +3,7 @@ package study.querydsl.domain.member.entity;
 import com.querydsl.core.QueryFactory;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,8 @@ import study.querydsl.domain.team.entity.Team;
 import study.querydsl.domain.member.entity.Member;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -344,6 +347,115 @@ public class MemberTest {
                 .fetch();
 
         for (Tuple tuple : result) {
+            System.out.println("tuple = " + tuple);
+        }
+    }
+
+    @PersistenceUnit
+    EntityManagerFactory emf;
+    @Test
+    public void fetchJoinNo(){
+        em.flush();
+        em.clear();
+
+        Member member1 = jpaQueryFactory
+                .selectFrom(qMember)
+                .where(qMember.username.eq("member1"))
+                .fetchOne();
+
+        System.out.println("member1 = " + member1);
+
+        boolean loaded = emf.getPersistenceUnitUtil().isLoaded(member1.getTeam());
+
+        assertThat(loaded).as("페치 조인 미적용").isFalse();
+    }
+
+    @Test
+    public void fetchJoinYes(){
+        em.flush();
+        em.clear();
+
+        Member member1 = jpaQueryFactory
+                .selectFrom(qMember)
+                .join(qMember.team, qTeam).fetchJoin()
+                .where(qMember.username.eq("member1"))
+                .fetchOne();
+
+        System.out.println("member1 = " + member1);
+
+        boolean loaded = emf.getPersistenceUnitUtil().isLoaded(member1.getTeam());
+
+        assertThat(loaded).as("페치 조인 적용").isTrue();
+    }
+
+    /**
+     * 나이가 평균 이상인 회원
+     *
+     */
+    @Test
+    public void subQuery()throws Exception{
+        QMember subqMember = new QMember("subqMember");
+        /**
+         * 서브 쿼리 사용시
+         */
+        List<Member> result = jpaQueryFactory
+                .selectFrom(qMember)
+                .where(qMember.age.goe(
+                        JPAExpressions
+                                .select(subqMember.age.avg())
+                                .from(subqMember)
+                ))
+                .fetch();
+
+        for (Member member : result) {
+            System.out.println("member = " + member);
+        }
+        assertThat(result).extracting("age")
+                .contains(30,40);
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+
+    @Test
+    public void subQuery2()throws Exception{
+        QMember subqMember = new QMember("subqMember");
+        /**
+         * 서브 쿼리 사용시
+         */
+        List<Member> result = jpaQueryFactory
+                .selectFrom(qMember)
+                .where(qMember.age.in(
+                        JPAExpressions
+                                .select(subqMember.age)
+                                .from(subqMember)
+                                .where(qMember.age.gt(10))
+                ))
+                .fetch();
+
+        for (Member member : result) {
+            System.out.println("member = " + member);
+        }
+        assertThat(result).extracting("age")
+                .contains(20, 30,40);
+    }
+
+    @Test
+    public void subQuery3_select(){
+
+        QMember subqMember = new QMember("subqMember");
+
+        List<Tuple> tuples = jpaQueryFactory
+                .select(qMember.username,
+                        JPAExpressions
+                                .select(subqMember.age.avg())
+                                .from(subqMember))
+                .from(qMember)
+                .fetch();
+
+        for (Tuple tuple : tuples) {
             System.out.println("tuple = " + tuple);
         }
     }

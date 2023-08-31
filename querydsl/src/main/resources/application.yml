@@ -22,6 +22,14 @@ spring:
     password: 0814
     driver-class-name: org.mariadb.jdbc.Driver
 
+    spring-doc:
+      swagger-ui:
+        #http://localhost:8080/swagger-ui/#
+        path: /swagger-ui.html
+        displayRequestDuration: true
+        gorups-order: DESC
+
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -30,6 +38,7 @@ spring:
         format_sql: true
         show-sql: true
         use_sql_comments: true
+
 
 logging.level:
   org.hibernate.SQL: debug
