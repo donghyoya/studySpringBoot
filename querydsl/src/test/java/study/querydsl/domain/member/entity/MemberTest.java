@@ -3,6 +3,11 @@ package study.querydsl.domain.member.entity;
 import com.querydsl.core.QueryFactory;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.CaseBuilder;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import study.querydsl.domain.member.dto.MemberDto;
+import study.querydsl.domain.member.dto.UserDto;
 import study.querydsl.domain.team.entity.QTeam;
 import study.querydsl.domain.team.entity.Team;
 import study.querydsl.domain.member.entity.Member;
@@ -457,6 +464,164 @@ public class MemberTest {
 
         for (Tuple tuple : tuples) {
             System.out.println("tuple = " + tuple);
+        }
+    }
+
+    @Test
+    public void basicCase(){
+        List<String> fetch = jpaQueryFactory
+                .select(qMember.age
+                        .when(10).then("열살")
+                        .when(20).then("스무살")
+                        .otherwise("기타"))
+                .from(qMember)
+                .fetch();
+        for (String s : fetch) {
+            System.out.println("s = " + s);
+        }
+    }
+
+    @Test
+    public void complexCase(){
+        List<String> fetch = jpaQueryFactory
+                .select(new CaseBuilder()
+                        .when(qMember.age.between(0, 20)).then("10대")
+                        .when(qMember.age.between(21, 30)).then("20대")
+                        .otherwise("기타"))
+                .from(qMember)
+                .fetch();
+        for (String s : fetch) {
+            System.out.println("s = " + s);
+        }
+    }
+
+    @Test
+    public void constant(){
+        List<Tuple> tuples = jpaQueryFactory
+                .select(qMember.username, Expressions.constant("A"))
+                .from(qMember)
+                .fetch();
+
+        for (Tuple tuple : tuples) {
+            System.out.println("tuple = " + tuple);
+        }
+    }
+
+    @Test
+    public void concat(){
+        List<String> fetch = jpaQueryFactory
+                .select(qMember.username.concat("_").concat(qMember.age.stringValue()))
+                .from(qMember)
+                .where(qMember.username.eq("member4"))
+                .fetch();
+        for (String s : fetch) {
+            System.out.println("s = " + s);
+        }
+        //member4_40 출력됨
+    }
+
+    @Test
+    public void simpleProjection(){
+        List<String> result = jpaQueryFactory
+                .select(qMember.username)
+                .from(qMember)
+                .fetch();
+
+        for (String s : result) {
+            System.out.println("s = " + s);
+        }
+    }
+
+    @Test
+    public void tupleProjection(){
+        List<Tuple> tuples = jpaQueryFactory
+                .select(qMember.username, qMember.age)
+                .from(qMember)
+                .fetch();
+        for (Tuple tuple : tuples) {
+            String username = tuple.get(qMember.username);
+            Integer age = tuple.get(qMember.age);
+            System.out.println("username = " + username);
+            System.out.println("age = " + age);
+
+        }
+    }
+/*
+4강 2장 프로젝션과 결과 반환 - DTO 조회
+ */
+    @Test
+    public void findDtoByJPQL(){
+//        DTO말고 Entity만 가능하다(아무리 dto 규격에 맞게 데이터를 가져올려고해도 안됀다
+//        em.createQuery("select m.username, m.age from Member m", MemberDto.class);
+        List<MemberDto> resultList = em.createQuery("select new study.querydsl.domain.member.dto.MemberDto(m.username, m.age) from Member m ", MemberDto.class)
+                .getResultList();
+        for (MemberDto memberDto : resultList) {
+            System.out.println("memberDto = " + memberDto);
+        }
+    }
+
+    @Test
+    public void findDtoBySetter(){
+        // 사용하는 dto에 default 생성자 만들어야해
+        List<MemberDto> memberDtoList = jpaQueryFactory
+                .select(Projections.bean(MemberDto.class, qMember.username, qMember.age))
+                .from(qMember)
+                .fetch();
+        for (MemberDto memberDto : memberDtoList) {
+            System.out.println("memberDto = " + memberDto);
+        }
+    }
+
+    @Test
+    public void findDtoByField(){
+        // 사용하는 dto에 default 생성자 만들어야해
+        // feild 는 getter setter 필요없다, 즉 @Data 하거나 따로 getter setter 추가해야한다
+        List<MemberDto> memberDtoList = jpaQueryFactory
+                .select(Projections.fields(MemberDto.class, qMember.username, qMember.age))
+                .from(qMember)
+                .fetch();
+        for (MemberDto memberDto : memberDtoList) {
+            System.out.println("memberDto = " + memberDto);
+        }
+    }
+    @Test
+    public void findUserDtoByField(){
+        QMember memberSub = new QMember("memberSub");
+        //원래라면 필드명(user != member) 은 다르기에 username, age은 null이 나온다
+        // 근데 업데이트를 통해서 해당 이슈를 고쳐진것같다
+        List<UserDto> UserDtoList = jpaQueryFactory
+                .select(Projections.fields(UserDto.class,
+                        qMember.username.as("name"), //원래 안에 attribute 값을 맞춰서 매핑 시켜야한다
+
+                        //서브 쿼리는 ExpressionUtils 사용해야한다
+                        ExpressionUtils.as(JPAExpressions
+                                .select(memberSub.age.max())
+                                .from(memberSub),"age")
+                        )
+                )
+                .from(qMember)
+                .fetch();
+        for (UserDto userDto : UserDtoList) {
+            System.out.println("userDto = " + userDto);
+        }
+    }
+
+    @Test
+    public void findDtoByConstructor(){
+        List<MemberDto> memberDtoList = jpaQueryFactory
+                .select(Projections.constructor(MemberDto.class, qMember.username, qMember.age))
+                .from(qMember)
+                .fetch();
+        //
+        List<UserDto> userDtoList = jpaQueryFactory
+                .select(Projections.constructor(UserDto.class, qMember.username, qMember.age))
+                .from(qMember)
+                .fetch();
+        for (MemberDto memberDto : memberDtoList) {
+            System.out.println("memberDto = " + memberDto);
+        }
+        for (UserDto userDto : userDtoList) {
+            System.out.println("userDto = " + userDto);
         }
     }
 }
