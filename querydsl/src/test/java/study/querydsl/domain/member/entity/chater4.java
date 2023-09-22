@@ -224,4 +224,30 @@ public class chater4 {
     private BooleanExpression allEq(String usernameParam, Integer ageParam){
         return usernameEq(usernameParam).and(ageEq(ageParam));
     }
+
+    /*
+    6장 수정, 삭제 벌크 연산
+     */
+    @Test
+    public void bulkUpdate(){
+        //count는 영향을 받은 회원수
+        long count = jpaQueryFactory
+                .update(qMember)
+                .set(qMember.username, "비회원")
+                .where(qMember.age.lt(28))
+                .execute();
+        /*
+        1 member1 = 10 -> 1
+        2 member2 = 20 -> 2
+        3 member3 = 30 -> 3
+        4 member4 = 40 -> 4
+         */
+        List<Member> members = jpaQueryFactory
+                .select(qMember)
+                .fetch();
+
+        for (Member member : members) {
+            System.out.println("member = " + member);
+        }
+    }
 }
