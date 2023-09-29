@@ -4,6 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -273,4 +274,39 @@ public class chapter4 {
                 .where(qMember.age.gt(18))
                 .execute();
     }
+
+    @Test
+    public void sqlFunction(){
+        // Member 들을 조외할때 M 으로 변경해서 조회한다
+        // function 사용할때 확인할려면 MysqlDielect 에 있어야한다
+        List<String> result = jpaQueryFactory
+                .select(Expressions.stringTemplate(
+                        "function('regexp_replace', {0}, {1}, {2})",
+                        qMember.username, "member", "M"))
+                .from(qMember)
+                .fetch();
+
+        for (String member : result) {
+            System.out.println("member = " + member);
+        }
+    }
+
+//    @Test
+//    public void sqlFucntion2(){
+//        List<String> results = jpaQueryFactory
+//                .select(qMember.username)
+//                .from(qMember)
+//                .where(
+//                        qMember.username.eq(
+//                                Expressions.stringTemplate(
+//                                        "function('lower', {0}",
+//                                        qMember.username
+//                                )
+//                        )
+//                )
+//                .fetch();
+//        for (String result : results) {
+//            System.out.println("result = " + result);
+//        }
+//    }
 }
