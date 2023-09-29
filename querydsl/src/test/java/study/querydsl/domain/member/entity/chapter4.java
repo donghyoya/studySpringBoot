@@ -258,4 +258,19 @@ public class chapter4 {
                 .execute();
     }
 
+    @Test
+    public void bulkMultiply(){
+        long execute = jpaQueryFactory
+                .update(qMember)
+                .set(qMember.age, qMember.age.multiply(2))
+                .execute();
+    }
+
+    @Test
+    public void bulkDelete(){
+        long execute = jpaQueryFactory
+                .delete(qMember)
+                .where(qMember.age.gt(18))
+                .execute();
+    }
 }
