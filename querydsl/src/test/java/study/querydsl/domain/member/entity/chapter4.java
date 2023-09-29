@@ -2,7 +2,6 @@ package study.querydsl.domain.member.entity;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ExpressionUtils;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
@@ -24,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-public class chater4 {
+public class chapter4 {
 
     @Autowired
     EntityManager em;
@@ -250,4 +249,13 @@ public class chater4 {
             System.out.println("member = " + member);
         }
     }
+
+    @Test
+    public void bulkAdd(){
+        long execute = jpaQueryFactory
+                .update(qMember)
+                .set(qMember.age, qMember.age.add(1))
+                .execute();
+    }
+
 }
