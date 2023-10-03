@@ -26,6 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 public class chapter4 {
 
+
     @Autowired
     EntityManager em;
 
