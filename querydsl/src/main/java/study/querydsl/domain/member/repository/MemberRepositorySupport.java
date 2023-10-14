@@ -1,6 +1,8 @@
 package study.querydsl.domain.member.repository;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -14,6 +16,8 @@ import study.querydsl.domain.team.entity.QTeam;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Repository
 //@RequiredArgsConstructor
@@ -94,5 +98,60 @@ public class MemberRepositorySupport {
                 .leftJoin(qMember.team, qTeam)
                 .where(builder)
                 .fetch();
+    }
+
+
+    /**
+     * where 문에 조건함수를 재사용이 가능하다
+     * @param condition
+     * @return
+     */
+    public List<MemberTeamDto> search(MemberSearchCondition condition){
+
+
+        return queryFactory
+                .select(new QMemberTeamDto(
+                        qMember.id.as("memberId"),
+                        qMember.username,
+                        qMember.age,
+                        qTeam.id.as("teamId"),
+                        qTeam.name.as("teamName")
+                ))
+                .from(qMember)
+                .leftJoin(qMember.team, qTeam)
+                .where(
+                        usernameEq(condition.getUsername()),
+                        teamNameEq(condition.getTeamName()),
+                        ageGoe(condition.getAgeGoe()),
+                        ageLoe(condition.getAgeLoe())
+                )
+                .fetch();
+    }
+
+    /**
+     * Predicate 보다
+     * BoolenaExpression 으로해야한다
+     * 나중에 조합할수 있기 때문이다
+     * * 반드시 com.querydsl.core 로 import 해야한다
+     */
+    private BooleanExpression usernameEq(String username) {
+        //isEmpty는 스프링프레임워크의 ObjectUtils 에있다
+        return StringUtils.hasText((username)) ? qMember.username.eq(username) : null;
+    }
+    private BooleanExpression teamNameEq(String teamName) {
+        return StringUtils.hasText((teamName)) ? qTeam.name.eq(teamName) : null;
+    }
+
+    private BooleanExpression ageLoe(Integer ageLoe) {
+        return ageLoe != null ? qMember.age.loe(ageLoe) : null;
+    }
+
+    private BooleanExpression ageGoe(Integer ageGoe) {
+        return ageGoe != null ? qMember.age.goe(ageGoe) : null;
+    }
+
+    // 아래처럼 조립도 가능하다(물론 그의따흔 함수는 알고있어야한다)
+    private BooleanExpression ageBetween(int ageLoe, int ageGoe){
+        return ageGoe(ageGoe).and(ageLoe(ageLoe));
     }
 }

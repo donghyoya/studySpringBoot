@@ -81,4 +81,19 @@ class MemberRepositorySupportTest {
             System.out.println("memberTeamDto = " + memberTeamDto);
         }
     }
+
+    @Test
+    public void searchTest2(){
+
+        MemberSearchCondition condition = new MemberSearchCondition();
+        condition.setAgeGoe(20); //20세부터
+        condition.setAgeLoe(40); //40세까지
+        condition.setTeamName("teamD"); //teamD 에 포함된사람
+
+        List<MemberTeamDto> search = memberRepositorySupport.search(condition);
+
+        for (MemberTeamDto memberTeamDto : search) {
+            System.out.println("memberTeamDto = " + memberTeamDto);
+        }
+    }
 }
