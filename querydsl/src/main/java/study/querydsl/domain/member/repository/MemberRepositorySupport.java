@@ -1,7 +1,6 @@
 package study.querydsl.domain.member.repository;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
@@ -21,7 +20,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Repository
 //@RequiredArgsConstructor
-public class MemberRepositorySupport {
+public class MemberRepositorySupport implements MemberRepositoryCustom{
 
     private final EntityManager em;
     private final JPAQueryFactory queryFactory;

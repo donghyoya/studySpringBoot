@@ -12,7 +12,6 @@ import study.querydsl.domain.team.entity.Team;
 import study.querydsl.domain.team.repository.TeamRepository;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.PersistenceContext;
 
 /**
  * 이부분은 어플리케이션을 실행 시킬때
