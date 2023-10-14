@@ -545,8 +545,6 @@ public class MemberTest {
             Integer age = tuple.get(qMember.age);
             System.out.println("username = " + username);
             System.out.println("age = " + age);
-
         }
     }
-
 }
